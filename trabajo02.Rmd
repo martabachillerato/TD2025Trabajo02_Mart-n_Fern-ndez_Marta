@@ -1,0 +1,22 @@
+---
+title: "trabajo02_Martin_Fernandez"
+author: "Marta Martín Fernández"
+date: "2025-10-28"
+output: html_document
+---
+
+Se tendrán  en cuenta los siguientes apartados para su calificación: Presentación (Presenta Gráficos; Motiva Problema);
+
+PDFHTML(Sólo PDF; Sólo HTML); GitHub (Crea Repositorio GitHub); NúmeroCriteriosAlternativas (Varios Niveles
+
+Subcriterios; NúmAlternativas; NúmCriterios); AHPconR (Estudio Inconsistencia; Matrices de comparación 2 a 2 están
+
+bien, no usar: 1.5,…); AHPconPaquete (Estudio Inconsistencia; Comentarios a tablas; Matrices de comparación 2 a
+
+2 están bien); Electre (Comenta el paso a paso seguido; Qué pesos distintos a AHP; Un solo paso; Muchas salidas
+
+innecesarias); Promethee (Hace Promethee R y Windows; Qué Pesos distintos a AHP; Explicaciones); Conclusiones
+
+(Justifica posibles diferencias entre métodos)
+
+TEMA : ELECCIÓN DEL MEJOR TIPO DE EMPLEO PARA COMPAGINAR CON LOS ESTUDIOS UNIVERSITARIOS
