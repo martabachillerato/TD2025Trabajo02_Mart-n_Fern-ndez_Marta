@@ -1,22 +1,99 @@
 ---
-title: "trabajo02_Martin_Fernandez"
+title: "trabajo02_Martín_Fernández"
 author: "Marta Martín Fernández"
 date: "2025-10-28"
 output: html_document
 ---
 
-Se tendrán  en cuenta los siguientes apartados para su calificación: Presentación (Presenta Gráficos; Motiva Problema);
 
-PDFHTML(Sólo PDF; Sólo HTML); GitHub (Crea Repositorio GitHub); NúmeroCriteriosAlternativas (Varios Niveles
 
-Subcriterios; NúmAlternativas; NúmCriterios); AHPconR (Estudio Inconsistencia; Matrices de comparación 2 a 2 están
+Se tendrán  en cuenta los siguientes apartados para su calificación:
 
-bien, no usar: 1.5,…); AHPconPaquete (Estudio Inconsistencia; Comentarios a tablas; Matrices de comparación 2 a
+Presentación (Presenta Gráficos; Motiva Problema);
 
-2 están bien); Electre (Comenta el paso a paso seguido; Qué pesos distintos a AHP; Un solo paso; Muchas salidas
+PDFHTML(Sólo PDF; Sólo HTML)
 
-innecesarias); Promethee (Hace Promethee R y Windows; Qué Pesos distintos a AHP; Explicaciones); Conclusiones
+; GitHub (Crea Repositorio GitHub); 
+
+NúmeroCriteriosAlternativas (Varios Niveles Subcriterios; NúmAlternativas; NúmCriterios); 
+
+AHPconR (Estudio Inconsistencia; Matrices de comparación 2 a 2 están
+bien, no usar: 1.5,…); 
+
+AHPconPaquete (Estudio Inconsistencia; Comentarios a tablas; Matrices de comparación 2 a 2 están bien); 
+
+Electre (Comenta el paso a paso seguido; Qué pesos distintos a AHP; Un solo paso; Muchas salidas innecesarias); 
+
+Promethee (Hace Promethee R y Windows; Qué Pesos distintos a AHP; Explicaciones); Conclusiones
 
 (Justifica posibles diferencias entre métodos)
 
 TEMA : ELECCIÓN DEL MEJOR TIPO DE EMPLEO PARA COMPAGINAR CON LOS ESTUDIOS UNIVERSITARIOS
+
+He elegido este tema porque es un problema que afecta a muchos estudiantes universitarios que buscan equilibrar sus estudios con un empleo que les permita cubrir sus gastos y adquirir experiencia laboral relevante. La elección del tipo de empleo adecuado puede influir significativamente en el rendimiento académico y en la calidad de vida del estudiante. Además, este tema es relevante en el contexto actual, donde muchos estudiantes enfrentan desafíos financieros y buscan oportunidades laborales que se adapten a sus horarios y necesidades. Al analizar las diferentes opciones de empleo, se pueden considerar factores como la flexibilidad horaria, la remuneración, la relevancia para la carrera académica y el ambiente laboral. Este análisis puede ayudar a los estudiantes a tomar decisiones informadas sobre qué tipo de empleo es más adecuado para ellos, permitiéndoles maximizar tanto su desarrollo académico como profesional.
+
+Es un tema que me motiva debido a que ha sido una decisión que he tenido que tomar en el pasado, ya que necesitaba un empleo que pudiera compaginar con mi estudio en la universidad, y es una decisión que tienen que tomar mucho de los estudiantes universitarios año tras año.
+
+# Definición del problema
+
+El problema consiste en seleccionar el mejor tipo de empleo para un estudiante universitario que busca equilibrar sus estudios con un trabajo que le permita cubrir sus gastos y adquirir experiencia laboral relevante. Se deben considerar varios criterios y alternativas para tomar una decisión informada mediante el uso de las técnicas de toma de decisiones multicriterio (AHP, ELECTRE, PROMETHEE).
+
+# Alternativas (Opciones de empleo)
+
+Vamos a considerar 4 tipos de empleo comunes entre los estudiantes universitarios:
+
+A1: Empleo en hostelería/servicios.
+
+DESCRIPCIÓN: Camarero o trabajador en un bar. Horarios fijos, a menudo suelen ser los fines de semana. 
+
+A2: Profesor/Tutor.
+
+DESCRIPCIÓN: Dar clases particulares a otros estudiantes. Horarios flexibles, generalmente por las tardes o fines de semana cuando al estudiante le venga mejor por su organización.
+
+A3: Repartidor/Conductor de App.
+
+DESCRIPCIÓN: Repartidor de comida o conductor para aplicaciones de transporte. Horarios muy flexibles, se puede trabajar en cualquier momento del día según la disponibilidad del estudiante.
+
+# Criterios y Subcriterios
+
+Hemos definido cuatro criterios principales y un total de 8 subcriterios para evaluar las alternativas de empleo:
+     
+C1. Remuneración e impacto financiero 
+
+   - Subcriterios:
+   
+     C1.1. Salario por hora. Tenemos que maximizar.
+     C1.2. Beneficios adicionales. Tenemos que maximizar.
+     
+OBJETIVO: Maximizar la remuneración total y los beneficios financieros asociados al empleo, ya que vamos a tener más dinero para ahorrar y cubrir nuestras necesidades.
+     
+C2. Impacto académico
+
+   - Subcriterios:
+   
+     C2.1. Cercanía al hogar. Tenemos que maximizar.
+     C2.2. Carga mental/estrés. Tenemos que minimizar.
+     
+OBJETIVO: Minimizar, ya que buscamos que el impacto negativo del empleo en el rendimiento académico sea mínimo, y que el trabajo no suponga un estrés adicional en nuestra vida que pueda llegar a interferir con los estudios. Queremos sobre todo el bienestar del estudiante. 
+     
+C3. Relevancia para la Carrera Académica
+
+   - Subcriterios:
+   
+     C.3.1. Oportunidades de desarrollo profesional. 
+     Tenemos que maximizar.
+     C.3.2. Relación con los estudios. Tenemos que
+     maximizar.
+     
+OBJETIVO: Maximizar, ya que buscamos que el empleo tenga una relación directa con la carrera académica del estudiante, proporcionando experiencia relevante y oportunidades de desarrollo profesional que puedan beneficiar su futuro laboral.
+     
+C4. Desarrollo personal
+
+   - Subcriterios:
+   
+     C.4.1. Satisfacción personal. Tenemos que maximizar.
+     C.4.2. Relaciones con compañeros y jefes. Tenemos
+     que maximizar.
+     
+OBJETIVO: Maximizar, ya que buscamos que el empleo contribuya al crecimiento personal del estudiante, proporcionando un ambiente de trabajo positivo y oportunidades para desarrollar habilidades interpersonales y profesionales.
+
