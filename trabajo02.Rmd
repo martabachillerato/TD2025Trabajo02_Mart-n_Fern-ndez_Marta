@@ -5,28 +5,10 @@ date: "2025-10-28"
 output: html_document
 ---
 
-
-
-Se tendrán  en cuenta los siguientes apartados para su calificación:
-
 Presentación (Presenta Gráficos; Motiva Problema);
 
-PDFHTML(Sólo PDF; Sólo HTML)
-
-; GitHub (Crea Repositorio GitHub); 
-
-NúmeroCriteriosAlternativas (Varios Niveles Subcriterios; NúmAlternativas; NúmCriterios); 
-
-AHPconR (Estudio Inconsistencia; Matrices de comparación 2 a 2 están
-bien, no usar: 1.5,…); 
-
-AHPconPaquete (Estudio Inconsistencia; Comentarios a tablas; Matrices de comparación 2 a 2 están bien); 
-
-Electre (Comenta el paso a paso seguido; Qué pesos distintos a AHP; Un solo paso; Muchas salidas innecesarias); 
-
-Promethee (Hace Promethee R y Windows; Qué Pesos distintos a AHP; Explicaciones); Conclusiones
-
-(Justifica posibles diferencias entre métodos)
+ENLACES:
+https://modelocurriculum.net/blog/trabajos-perfectos-para-compaginar-con-los-estudios
 
 TEMA : ELECCIÓN DEL MEJOR TIPO DE EMPLEO PARA COMPAGINAR CON LOS ESTUDIOS UNIVERSITARIOS
 
@@ -42,17 +24,25 @@ El problema consiste en seleccionar el mejor tipo de empleo para un estudiante u
 
 Vamos a considerar 4 tipos de empleo comunes entre los estudiantes universitarios:
 
-A1: Empleo en hostelería/servicios.
+A1: EMPLEO EN HOSTELERÍA/SERVICIOS.
 
-DESCRIPCIÓN: Camarero o trabajador en un bar. Horarios fijos, a menudo suelen ser los fines de semana. 
+DESCRIPCIÓN: Camarero, repartidor o trabajador en un bar. Horarios fijos, a menudo suelen ser los fines de semana. 
 
-A2: Profesor/Tutor.
+A2: PROFESOR PARTICULAR/TUTOR.
 
 DESCRIPCIÓN: Dar clases particulares a otros estudiantes. Horarios flexibles, generalmente por las tardes o fines de semana cuando al estudiante le venga mejor por su organización.
 
-A3: Repartidor/Conductor de App.
+A3: RRPP/PROMOTOR DE EVENTOS.
 
-DESCRIPCIÓN: Repartidor de comida o conductor para aplicaciones de transporte. Horarios muy flexibles, se puede trabajar en cualquier momento del día según la disponibilidad del estudiante.
+DESCRIPCIÓN: Trabajar en la promoción de eventos, productos o servicios, además de captar gente para el local en el que trabaje. Suelen ser trabajos con horarios nocturnos y fines de semana. 
+
+A4: DEPENDIENTE/A.
+
+DESCRIPCIÓN: Es uno de los empleos más solicitados entre los estudiantes. Muchas tiendas de ropa, calzado y complementos ofrecen puestos de trabajo a media jornada, ideal para jóvenes estudiantes apasionados por la moda.
+
+A5: CUIDADOR DE NIÑOS.
+
+DESCRIPCIÓN: Fácil empleo para los estudiantes con horario flexible, que puede adaptarse a la organización del estudiante.
 
 # Criterios y Subcriterios
 
@@ -97,3 +87,111 @@ C4. Desarrollo personal
      
 OBJETIVO: Maximizar, ya que buscamos que el empleo contribuya al crecimiento personal del estudiante, proporcionando un ambiente de trabajo positivo y oportunidades para desarrollar habilidades interpersonales y profesionales.
 
+AHPconR (Estudio Inconsistencia; Matrices de comparación 2 a 2 están
+bien, no usar: 1.5,…); 
+
+AHPconPaquete (Estudio Inconsistencia; Comentarios a tablas; Matrices de comparación 2 a 2 están bien); 
+
+Electre (Comenta el paso a paso seguido; Qué pesos distintos a AHP; Un solo paso; Muchas salidas innecesarias); 
+
+# MÉTODO ELECTRE 
+
+Tenemos que maximizar los criterios C1, C3 y C4, y minimizar el criterio C2.
+Los pesos asignados a cada uno de estos criterios son: W=(0.35 , 0.3 , 0.10 , 0.25).
+La matriz de decisión viene recogida en la siguiente tabla: 
+
+```{r, echo=FALSE}
+# ----------------------------------------------------
+# 1. Definición de Datos (Necesario para el ambiente)
+# ----------------------------------------------------
+
+library(knitr)
+library(kableExtra)
+library(tibble)
+
+# Se fija la semilla para que los datos aleatorios sean reproducibles
+set.seed(42)
+
+# --- ALTERNATIVAS ---
+alternativas <- c("A1: Hostelería/Servicios", 
+                  "A2: Profesor/Tutor", 
+                  "A3: RRPP/Promotor", 
+                  "A4: Dependiente/a", 
+                  "A5: Cuidador de Niños")
+
+# --- GENERACIÓN DE DATOS ALEATORIOS PLAUSIBLES ---
+# Nota: La escala de 1 a 10 se utiliza para criterios cualitativos (10 = Mejor en MAX, 10 = Peor en MIN)
+
+matriz_decision_df <- tibble(
+  Alternativa = alternativas,
+  
+  # C1. Remuneración e Impacto Financiero (MAXIMIZAR)
+  # C1.1 Salario por hora (€) - Valores más realistas.
+  C1.1_Salario_EUR = c(9.5, 13.0, 10.5, 8.0, 11.5) + runif(5, -1, 1),
+  # C1.2 Beneficios adicionales (ej. propinas, descuentos)
+  C1.2_Beneficios = round(runif(5, 4, 10)),
+  
+  # C2. Impacto Académico (MINIMIZAR)
+  # C2.1 Cercanía al hogar (1 = Más cerca, 10 = Más lejos)
+  C2.1_Cercania = round(runif(5, 2, 8)),
+  # C2.2 Carga mental/estrés (1 = Menos estrés, 10 = Más estrés)
+  C2.2_Carga_Estres = round(runif(5, 3, 9)),
+  
+  # C3. Relevancia para la Carrera Académica (MAXIMIZAR)
+  # C3.1 Oportunidades de desarrollo profesional
+  C3.1_Oportunidades = round(runif(5, 1, 10)),
+  # C3.2 Relación con los estudios
+  C3.2_Relacion_Estudios = round(runif(5, 1, 10)),
+  
+  # C4. Desarrollo Personal (MAXIMIZAR)
+  # C4.1 Satisfacción personal
+  C4.1_Satisfaccion = round(runif(5, 5, 10)),
+  # C4.2 Relaciones con compañeros y jefes
+  C4.2_Relaciones = round(runif(5, 6, 10))
+)
+
+# Transponer y renombrar para formato de tabla
+matriz_electre_display <- t(matriz_decision_df[, -1]) 
+colnames(matriz_electre_display) <- matriz_decision_df$Alternativa
+rownames(matriz_electre_display) <- c(
+  "C1.1 Salario (€/h)", "C1.2 Beneficios Adicionales", 
+  "C2.1 Cercanía al Hogar", "C2.2 Carga Mental/Estrés", 
+  "C3.1 Oportunidades Desarrollo", "C3.2 Relación con Estudios",
+  "C4.1 Satisfacción Personal", "C4.2 Relaciones Sociales"
+  )
+
+# --- PESOS Y NATURALEZA ---
+# Pesos para C1, C2, C3, C4: W=(0.35, 0.30, 0.10, 0.25)
+W_Criterios_Principales <- c(C1=0.35, C2=0.30, C3=0.10, C4=0.25)
+W_Final <- c(
+  rep(W_Criterios_Principales[1]/2, 2), # C1 (2 subcriterios)
+  rep(W_Criterios_Principales[2]/2, 2), # C2 (2 subcriterios)
+  rep(W_Criterios_Principales[3]/2, 2), # C3 (2 subcriterios)
+  rep(W_Criterios_Principales[4]/2, 2)  # C4 (2 subcriterios)
+)
+
+# Naturaleza de los criterios (MAX=1, MIN=-1)
+naturaleza_criterios_raw <- c(1, 1, -1, -1, 1, 1, 1, 1)
+
+# Umbrales de Veto 'd' (Ejemplo, deben justificarse)
+Umbral_Veto_d <- c(
+  2.0, # C1.1 Salario (2.0€ de diferencia es veto)
+  Inf, # C1.2 Beneficios (No veto)
+  4,   # C2.1 Cercanía (4 puntos de diferencia es veto)
+  Inf, # C2.2 Carga/Estrés (No veto)
+  3,   # C3.1 Oportunidades (3 puntos de diferencia es veto)
+  Inf, Inf, Inf # El resto sin veto para simplificar
+)
+
+# Definición de la tabla de Pesos y Naturaleza
+Pesos_W_df <- data.frame(
+  Criterio = rownames(matriz_electre_display),
+  Peso = W_Final,
+  Naturaleza = ifelse(naturaleza_criterios_raw == 1, "MAX", "MIN"),
+  Umbral_Veto_d = Umbral_Veto_d 
+)
+```
+
+Promethee (Hace Promethee R y Windows; Qué Pesos distintos a AHP; Explicaciones); Conclusiones
+
+(Justifica posibles diferencias entre métodos)
