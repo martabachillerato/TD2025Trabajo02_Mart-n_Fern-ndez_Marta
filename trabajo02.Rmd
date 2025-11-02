@@ -276,4 +276,163 @@ Con el método ELECTRE I nos salen los mismos resultados que con el método ELEC
 
 Promethee (Hace Promethee R y Windows; Qué Pesos distintos a AHP; Explicaciones); Conclusiones
 
+# MÉTODO PROMETHEE
+
+Tenemos que maximizar los subcriterios C1.1, C1.2, C2.1, C3.1, C3.2, C4.1 y C4.2, y solo tenemos que minimizar el subcriterio C2.2. Para crear la matriz para este método, multiplicamos la columna del subcriterio 2.2 por -1.
+
+```{r,echo=TRUE}
+
+source("teoriadecision_funciones_multicriterio.R")
+source("teoriadecision_funciones_multicriterio_utiles.R")
+
+tabdecision_promethee = multicriterio.crea.matrizdecision(c(8,2,3,-7,4,1,6,8,15,1,8,-2,8,9,9,3,10,5,5,-8,5,2,7,10,9,1,7,-6,5,3,5,7,12,3,7,-5,3,5,8,5), numalternativas = 5, numcriterios = 8, v.nombresalt=c("Hostelería","Tutor","RRPP","Dependiente","Cuidador"), v.nombrescri=c("Salario","Beneficios","Cercanía","Estrés","Desarrollo","Relación_Estudios","Satisfacción","Relaciones"))
+
+tabdecision_promethee
+
+```
+Vamos a asignar los siguientes pesos a los criterios: W=(0.20, 0.15 , 0.20, 0.15, 0.10, 0.05, 0.10 , 0.05).
+
+A continuación se define la matriz de funciones de preferencia denominada tab.fpref en el código R, esencial para aplicar este método PROMETHEE. Esta matriz indica el tipo de función, el umbral de indiferencia (q), el umbral de preferencia (p) y s.
+
+```{r,echo=TRUE}
+
+tab.fpref = matrix(c(2,3,1,0,1,0,1,0,3,0,5,0,5,2,5,0,1,0,1,0,4,3,6,0,6,0,1,2,3,0,4,0), ncol=4, byrow=TRUE)
+
+tab.fpref
+
+```
+### REPRESENTACIÓN GRÁFICA DE LAS FUNCIONES DE PREFERENCIA
+
+```{r,echo=TRUE}
+
+fpref.criterio_usual_di <- function(di) {
+  # di = vaj - vah
+  if (di <= 0) {
+    res = 0
+  } else {
+    res = 1
+  }
+  return(res)
+}
+
+fpref.cuasi_criterio_di <- function(di, qi) {
+  # di = vaj - vah
+  if (di <= qi) {
+    res = 0
+  } else {
+    res = 1
+  }
+  return(res)
+}
+
+fpref.criterio_preflineal_di <- function(di, pi) {
+  # di = vaj - vah
+  if (di <= 0) {
+    res = 0
+  } else if (di > pi) {
+    res = 1
+  } else {
+    res = di / pi
+  }
+  return(res)
+}
+
+fpref.criterio_nivel_di <- function(di, qi, pi) {
+  # di = vaj - vah
+  if (di <= qi) {
+    res = 0
+  } else if (di > pi) {
+    res = 1
+  } else {
+    res = 0.5 
+  }
+  return(res)
+}
+
+fpref.criterio_preflineal_indif_di <- function(di, qi, pi) {
+  # di = vaj - vah
+  if (di <= qi) {
+    res = 0
+  } else if (di > pi) {
+    res = 1
+  } else {
+    res = (di - qi) / (pi - qi) 
+  }
+  return(res)
+}
+
+fpref.criterio_gaussiano_di <- function(di, qi, pi, si) {
+  # di = vaj - vah. 
+  if (di <= 0) {
+    res = 0
+  } else {
+    res = 1 - exp(-(di^2) / (2 * si^2))
+  }
+  return(res)
+}
+
+x = seq(-10,10,length.out=100)
+
+```
+
+```{r,echo=TRUE,fig.align='center'}
+
+# GRÁFICA DEL CRITERIO USUAL 
+
+y_usual = sapply(x,fpref.criterio_usual_di)
+
+plot(x,y_usual,type="l",col="blue",main="Criterio usual")
+
+```
+
+```{r,echo=TRUE,fig.align='center'}
+
+# GRÁFICA DEL CRITERIO CUASI CON Q=3
+
+y_cuasi <- sapply(x, function(xx) fpref.cuasi_criterio_di(xx, qi = 3))
+
+plot(x,y_cuasi,type="l",col="blue",main="Criterio cuasi con Q=3")
+
+```
+
+```{r,echo=TRUE,fig.align='center'}
+
+# GRÁFICA DEL CRITERIO DE PREFERENCIA LINEAL CON P=5
+
+y_preflineal <- sapply(x, function(xx) fpref.criterio_preflineal_di(xx, pi = 5))
+
+plot(x,y_preflineal,type="l",col="blue",main="Criterio preferencia lineal con P=5")
+
+```
+
+```{r,echo=TRUE,fig.align='center'}
+
+# GRÁFICA DEL CRITERIO DE PREFERENCIA LINEAL INDIFERENTE CON Q=2,P=5
+
+y_preflinealindif <- sapply(x, function(xx) fpref.criterio_preflineal_indif_di(xx, qi=2, pi = 5))
+
+plot(x,y_preflinealindif,type="l",col="blue",main="Criterio preferencia lineal indiferente con Q=2,P=5")
+
+```
+
+```{r,echo=TRUE,fig.align='center'}
+
+# GRÁFICA DEL CRITERIO GAUSSIANO
+
+y_gaussiano <- sapply(x, function(xx) fpref.criterio_preflineal_di(xx, qi= 0, pi = 1, si=2))
+
+plot(x,y_gaussiano,type="l",col="blue",main="Criterio gaussiano")
+
+```
+
+```{r,echo=TRUE,fig.align='center'}
+
+# GRÁFICA DEL CRITERIO GAUSSIANO
+
+y_gaussiano <- sapply(x, function(xx) fpref.criterio_preflineal_di(xx, qi= 0, pi = 1, si=2))
+
+plot(x,y_gaussiano,type="l",col="blue",main="Criterio gaussiano")
+
+```
+
 (Justifica posibles diferencias entre métodos)
