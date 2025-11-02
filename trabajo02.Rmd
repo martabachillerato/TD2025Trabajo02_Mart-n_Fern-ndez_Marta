@@ -2,7 +2,9 @@
 title: "trabajo02_Martín_Fernández"
 author: "Marta Martín Fernández"
 date: "2025-10-28"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 Presentación (Presenta Gráficos; Motiva Problema);
@@ -52,8 +54,15 @@ C1. Remuneración e impacto financiero
 
    - Subcriterios:
    
-     C1.1. Salario por hora. Tenemos que maximizar.
-     C1.2. Beneficios adicionales. Tenemos que maximizar.
+     C1.1. Salario por hora. Tenemos que maximizar,
+     queremos ganar el mayor dinero posible.
+     ESCALA: Valor en euros por hora.
+     
+     C1.2. Beneficios adicionales. Tenemos que maximizar,
+     ya que si ganamos algo más aparte del salario normal
+     es beneficioso para nosotros.
+     ESCALA: Escala del 1 (bajo) al 5 (alto) para reflejar
+     descuentos, propinas...
      
 OBJETIVO: Maximizar la remuneración total y los beneficios financieros asociados al empleo, ya que vamos a tener más dinero para ahorrar y cubrir nuestras necesidades.
      
@@ -61,8 +70,16 @@ C2. Impacto académico
 
    - Subcriterios:
    
-     C2.1. Cercanía al hogar. Tenemos que maximizar.
-     C2.2. Carga mental/estrés. Tenemos que minimizar.
+     C2.1. Cercanía al hogar. Tenemos que maximizar, para
+     que este trabajo no suponga desplazarnos y perder más
+     tiempo, ya que siendo estudiantes no es algo que nos
+     sobre.
+     ESCALA: Escala del 1 (lejos) al 10 (muy
+     cerca/teletrabajo).
+     
+     C2.2. Carga mental/estrés. Tenemos que minimizar, para
+     que el trabajo no sea una carga en nuestra vida.
+     ESCALA: Escala del 1 (muy bajo) al 10 (muy alto).
      
 OBJETIVO: Minimizar, ya que buscamos que el impacto negativo del empleo en el rendimiento académico sea mínimo, y que el trabajo no suponga un estrés adicional en nuestra vida que pueda llegar a interferir con los estudios. Queremos sobre todo el bienestar del estudiante. 
      
@@ -71,9 +88,14 @@ C3. Relevancia para la Carrera Académica
    - Subcriterios:
    
      C.3.1. Oportunidades de desarrollo profesional. 
-     Tenemos que maximizar.
+     Tenemos que maximizar, para que nos beneficie todo lo
+     posible.
+     ESCALA: Escala del 1 (bajo) al 10 (alto).
+     
      C.3.2. Relación con los estudios. Tenemos que
-     maximizar.
+     maximizar, para que también nos ayude en nuestra
+     formación.
+    ESCALA: Escala del 1 (bajo) al 10 (alto).
      
 OBJETIVO: Maximizar, ya que buscamos que el empleo tenga una relación directa con la carrera académica del estudiante, proporcionando experiencia relevante y oportunidades de desarrollo profesional que puedan beneficiar su futuro laboral.
      
@@ -81,9 +103,16 @@ C4. Desarrollo personal
 
    - Subcriterios:
    
-     C.4.1. Satisfacción personal. Tenemos que maximizar.
+     C.4.1. Satisfacción personal. Tenemos que maximizar,
+     para que el trabajo nos haga sentir bien en nuestro
+     día a día y cuando vayamos.
+     ESCALA: Escala del 1 (bajo) al 10 (alto).
+    
      C.4.2. Relaciones con compañeros y jefes. Tenemos
-     que maximizar.
+     que maximizar, ya que es un aspecto importante siempre
+     en un trabajo. Se trabaja mejor con personas con las
+     que te lleves bien y tengas buena relación. 
+     ESCALA: Escala del 1 (bajo) al 10 (alto).
      
 OBJETIVO: Maximizar, ya que buscamos que el empleo contribuya al crecimiento personal del estudiante, proporcionando un ambiente de trabajo positivo y oportunidades para desarrollar habilidades interpersonales y profesionales.
 
@@ -96,101 +125,154 @@ Electre (Comenta el paso a paso seguido; Qué pesos distintos a AHP; Un solo pas
 
 # MÉTODO ELECTRE 
 
-Tenemos que maximizar los criterios C1, C3 y C4, y minimizar el criterio C2.
-Los pesos asignados a cada uno de estos criterios son: W=(0.35 , 0.3 , 0.10 , 0.25).
-La matriz de decisión viene recogida en la siguiente tabla: 
+Tenemos que maximizar los subcriterios C1.1, C1.2, C2.1, C3.1, C3.2, C4.1 y C4.2, y solo tenemos que minimizar el subcriterio C2.2.
 
-```{r, echo=FALSE}
-# ----------------------------------------------------
-# 1. Definición de Datos (Necesario para el ambiente)
-# ----------------------------------------------------
+Los pesos asignados a cada uno de estos subcriterios son: W=(0.25, 0.10 , 0.15, 0.15, 0.05, 0.05, 0.15 , 0.10).
+
+La matriz de decisión viene recogida en la siguiente tabla: 
+```{r tabla-electre, echo=FALSE}
+
+matriz_decision_data <- data.frame(
+  Salario = c(8, 15, 10, 9, 12),
+  Beneficios = c(2, 1, 5, 1, 3),
+  Cercania = c(3, 8, 5, 7, 7),
+  Estres = c(7, 2, 8, 6, 5),
+  Desarrollo = c(4, 8, 5, 5, 3),
+  Relacion_Estudios = c(1, 9, 2, 3, 5),
+  Satisfaccion = c(6, 9, 7, 5, 8),
+  Relaciones = c(8, 3, 10, 7, 5),
+  row.names = c("Hostelería", "Tutor", "RRPP", " Dependiente", "Cuidador")
+)
 
 library(knitr)
-library(kableExtra)
-library(tibble)
-
-# Se fija la semilla para que los datos aleatorios sean reproducibles
-set.seed(42)
-
-# --- ALTERNATIVAS ---
-alternativas <- c("A1: Hostelería/Servicios", 
-                  "A2: Profesor/Tutor", 
-                  "A3: RRPP/Promotor", 
-                  "A4: Dependiente/a", 
-                  "A5: Cuidador de Niños")
-
-# --- GENERACIÓN DE DATOS ALEATORIOS PLAUSIBLES ---
-# Nota: La escala de 1 a 10 se utiliza para criterios cualitativos (10 = Mejor en MAX, 10 = Peor en MIN)
-
-matriz_decision_df <- tibble(
-  Alternativa = alternativas,
-  
-  # C1. Remuneración e Impacto Financiero (MAXIMIZAR)
-  # C1.1 Salario por hora (€) - Valores más realistas.
-  C1.1_Salario_EUR = c(9.5, 13.0, 10.5, 8.0, 11.5) + runif(5, -1, 1),
-  # C1.2 Beneficios adicionales (ej. propinas, descuentos)
-  C1.2_Beneficios = round(runif(5, 4, 10)),
-  
-  # C2. Impacto Académico (MINIMIZAR)
-  # C2.1 Cercanía al hogar (1 = Más cerca, 10 = Más lejos)
-  C2.1_Cercania = round(runif(5, 2, 8)),
-  # C2.2 Carga mental/estrés (1 = Menos estrés, 10 = Más estrés)
-  C2.2_Carga_Estres = round(runif(5, 3, 9)),
-  
-  # C3. Relevancia para la Carrera Académica (MAXIMIZAR)
-  # C3.1 Oportunidades de desarrollo profesional
-  C3.1_Oportunidades = round(runif(5, 1, 10)),
-  # C3.2 Relación con los estudios
-  C3.2_Relacion_Estudios = round(runif(5, 1, 10)),
-  
-  # C4. Desarrollo Personal (MAXIMIZAR)
-  # C4.1 Satisfacción personal
-  C4.1_Satisfaccion = round(runif(5, 5, 10)),
-  # C4.2 Relaciones con compañeros y jefes
-  C4.2_Relaciones = round(runif(5, 6, 10))
-)
-
-# Transponer y renombrar para formato de tabla
-matriz_electre_display <- t(matriz_decision_df[, -1]) 
-colnames(matriz_electre_display) <- matriz_decision_df$Alternativa
-rownames(matriz_electre_display) <- c(
-  "C1.1 Salario (€/h)", "C1.2 Beneficios Adicionales", 
-  "C2.1 Cercanía al Hogar", "C2.2 Carga Mental/Estrés", 
-  "C3.1 Oportunidades Desarrollo", "C3.2 Relación con Estudios",
-  "C4.1 Satisfacción Personal", "C4.2 Relaciones Sociales"
-  )
-
-# --- PESOS Y NATURALEZA ---
-# Pesos para C1, C2, C3, C4: W=(0.35, 0.30, 0.10, 0.25)
-W_Criterios_Principales <- c(C1=0.35, C2=0.30, C3=0.10, C4=0.25)
-W_Final <- c(
-  rep(W_Criterios_Principales[1]/2, 2), # C1 (2 subcriterios)
-  rep(W_Criterios_Principales[2]/2, 2), # C2 (2 subcriterios)
-  rep(W_Criterios_Principales[3]/2, 2), # C3 (2 subcriterios)
-  rep(W_Criterios_Principales[4]/2, 2)  # C4 (2 subcriterios)
-)
-
-# Naturaleza de los criterios (MAX=1, MIN=-1)
-naturaleza_criterios_raw <- c(1, 1, -1, -1, 1, 1, 1, 1)
-
-# Umbrales de Veto 'd' (Ejemplo, deben justificarse)
-Umbral_Veto_d <- c(
-  2.0, # C1.1 Salario (2.0€ de diferencia es veto)
-  Inf, # C1.2 Beneficios (No veto)
-  4,   # C2.1 Cercanía (4 puntos de diferencia es veto)
-  Inf, # C2.2 Carga/Estrés (No veto)
-  3,   # C3.1 Oportunidades (3 puntos de diferencia es veto)
-  Inf, Inf, Inf # El resto sin veto para simplificar
-)
-
-# Definición de la tabla de Pesos y Naturaleza
-Pesos_W_df <- data.frame(
-  Criterio = rownames(matriz_electre_display),
-  Peso = W_Final,
-  Naturaleza = ifelse(naturaleza_criterios_raw == 1, "MAX", "MIN"),
-  Umbral_Veto_d = Umbral_Veto_d 
+kable(
+  matriz_decision_data,
+  caption = "Matriz de Decisión (Método ELECTRE)",
+  align = 'c'
 )
 ```
+
+Vamos a trabajar con un valor del umbral de concordancia (alpha) igual a 0.65, y un vector de umbrales de
+discordancia (d) igual a (6,4,5,4,6,4,5,5).
+
+Ahora procedemos a aplicar el método ELECTRE para ordenar las alternativas.
+
+```{r,echo=TRUE}
+
+source("teoriadecision_funciones_multicriterio.R")
+source("teoriadecision_funciones_multicriterio_utiles.R")
+
+metodo_electre = multicriterio.crea.matrizdecision(c(8,2,3,7,4,1,6,8,
+15,1,8,2,8,9,9,3,
+10,5,5,8,5,2,7,10,
+9,1,7,6,5,3,5,7,
+12,3,7,5,3,5,8,5),
+numalternativas = 5,
+numcriterios = 8)
+
+metodo_electre
+
+```
+```{r,echo=TRUE}
+
+salida_electre= multicriterio.metodoELECTRE_I(metodo_electre, pesos.criterios=
+c(0.25, 0.10 , 0.15, 0.15, 0.05, 0.05, 0.15 , 0.10), nivel.concordancia.minimo.alpha=0.65, no.se.compensan=c(6,4,5,4,6,4,5,5),que.alternativas = TRUE)
+
+salida_electre
+
+```
+
+```{r,echo=TRUE,fig.align='center'}
+
+qgraph::qgraph(salida_electre$relacion.dominante)
+
+```
+En este grafo de dominancia se representa visualmente la relación de superación obtenida al aplicar los test
+de concordancia y discordancia. Los resultados obtenidos son:
+
+A2 domina a a5. A5 domina a las alternativas A1 y A4. A3 domina a las alternativas A4 y A1.
+
+```{r,echo=TRUE}
+
+salida_electre$nucleo_aprox
+
+```
+Este es el núcleo aproximado, que es el conjunto de soluciones que no son dominadas por otras alternativas.
+El resultado es A2 y A3. Esto nos indica que las alternativas “Profesor particular/Tutor” y “RRPP/Promotor
+de eventos” son las más adecuadas, ya que ninguna de las otras opciones logró superarlas tras la aplicación
+de los subcriterios y umbrales.
+
+Para intentar quedarnos con una única alternativa óptima, vamos a reducir el grafo a las alternativas en el núcleo aproximado. Aplicamos el método ELECTRE de nuevo para ver si una alternativa domina a la otra en este subconjunto.
+
+```{r,echo=TRUE,fig.align='center'}
+
+salida_electre_b= multicriterio.metodoELECTRE_I(metodo_electre, pesos.criterios=
+c(0.25, 0.10 , 0.15, 0.15, 0.05, 0.05, 0.15 , 0.10), nivel.concordancia.minimo.alpha=0.65, no.se.compensan=c(6,4,5,4,6,4,5,5),que.alternativas = c(2,3))
+
+qgraph::qgraph(salida_electre_b$relacion.dominante)
+
+```
+El grafo nos indica que no hay dominancia de una alternativa sobre la otra, ya que no aparece ninguna flecha.
+
+```{r,echo=TRUE}
+
+salida_electre_b$nucleo_aprox
+
+```
+Después de reducir el análisis al subconjunto A2,A3, seguimos teniendo que el núcleo aproximado final sigue
+siendo A2,A3. Los números 1 y 2 solo indican el orden de estas alternativas en el subconjunto.
+
+Ahora vamos a probar a reducir el umbral alpha para ver si alguna alternativa domina a la otra e intentar
+resolver la incomparabilidad. Si ajustamos los umbrales podemos intentar forzar esta dominancia para
+seleccionar una única alternativa óptima.
+
+```{r,echo=TRUE,fig.align='center'}
+
+salida_electre_c= multicriterio.metodoELECTRE_I(metodo_electre, pesos.criterios=
+c(0.25, 0.10 , 0.15, 0.15, 0.05, 0.05, 0.15 , 0.10), nivel.concordancia.minimo.alpha=0.10, no.se.compensan=c(6,4,5,4,6,4,5,5),que.alternativas = c(2,3))
+
+qgraph::qgraph(salida_electre_c$relacion.dominante)
+
+```
+Probando a reducir el valor de alpha numerosas veces hasta llegar a un límite extremadamente permisivo
+(0.10), sigue sin aparecer dominancia en el grafo. Esto indica que necesitamos modificar también los valores
+del vector de discordancia.
+
+```{r,echo=TRUE,fit.align='center'}
+
+salida_electre_d= multicriterio.metodoELECTRE_I(metodo_electre, pesos.criterios=
+c(0.25, 0.10 , 0.15, 0.15, 0.05, 0.05, 0.15 , 0.10), nivel.concordancia.minimo.alpha=0.65, no.se.compensan=c(6,5,5,7,6,4,5,8),que.alternativas = c(2,3))
+
+qgraph::qgraph(salida_electre_d$relacion.dominante)
+
+```
+Tras probar una serie de valores para el vector de discordancia, se obtiene que A2 domina a A3 con
+d=(6,5,5,7,6,4,5,8), que es el vector de discordancia mínimamente ajustado. Tras observar esta solución,
+podemos decir que la alternativa A2 domina a la alternativa A3, por lo que la mejor opción es “Profesor
+particular/Tutor”.
+
+# CÁLCULOS EN EL MÉTODO ELECTRE I
+
+```{r,echo=TRUE}
+
+e1 = func_ELECTRE_Completo(salida_electre)
+
+e1$Grafo
+
+```
+
+```{r,echo=TRUE,fig.align='center'}
+
+qgraph::qgraph(e1$Grafo)
+
+```
+
+```{r,echo=TRUE}
+
+e1$Nucleo
+
+```
+Con el método ELECTRE I nos salen los mismos resultados que con el método ELECTRE anterior. El núcleo sigue estando compuesto por las alternativas 2 y 3, y siguen existiendo las mismas dominancias entre las alternativas, como vemos con el código e1$Grafo.
 
 Promethee (Hace Promethee R y Windows; Qué Pesos distintos a AHP; Explicaciones); Conclusiones
 
