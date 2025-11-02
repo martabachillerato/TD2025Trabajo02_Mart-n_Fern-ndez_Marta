@@ -296,6 +296,8 @@ A continuación se define la matriz de funciones de preferencia denominada tab.f
 
 ```{r,echo=TRUE}
 
+pesos.criterios=c(0.20, 0.15 , 0.20, 0.15, 0.10, 0.05, 0.10 , 0.05)
+
 tab.fpref = matrix(c(2,3,1,0,1,0,1,0,3,0,5,0,5,2,5,0,1,0,1,0,4,3,6,0,6,0,1,2,3,0,4,0), ncol=4, byrow=TRUE)
 
 tab.fpref
@@ -393,6 +395,8 @@ y_cuasi <- sapply(x, function(xx) fpref.cuasi_criterio_di(xx, qi = 3))
 
 plot(x,y_cuasi,type="l",col="blue",main="Criterio cuasi con Q=3")
 
+# Usamos q=3 porque consideramos que una diferencia en el salario de 1 o 2 euros no es suficiente, pero 3 sí. Si un empleo paga 3 euros más que otro, ese empleo se considera estrictamente superior. 
+
 ```
 
 ```{r,echo=TRUE,fig.align='center'}
@@ -402,6 +406,8 @@ plot(x,y_cuasi,type="l",col="blue",main="Criterio cuasi con Q=3")
 y_preflineal <- sapply(x, function(xx) fpref.criterio_preflineal_di(xx, pi = 5))
 
 plot(x,y_preflineal,type="l",col="blue",main="Criterio preferencia lineal con P=5")
+
+# 5 es la diferencia necesaria para considerar que un empleo es preferible a otro en términos de cercanía al hogar. Si un empleo está a 5 km o más cerca, se considera una ventaja significativa.
 
 ```
 
@@ -413,15 +419,7 @@ y_preflinealindif <- sapply(x, function(xx) fpref.criterio_preflineal_indif_di(x
 
 plot(x,y_preflinealindif,type="l",col="blue",main="Criterio preferencia lineal indiferente con Q=2,P=5")
 
-```
-
-```{r,echo=TRUE,fig.align='center'}
-
-# GRÁFICA DEL CRITERIO GAUSSIANO
-
-y_gaussiano <- sapply(x, function(xx) fpref.criterio_preflineal_di(xx, qi= 0, pi = 1, si=2))
-
-plot(x,y_gaussiano,type="l",col="blue",main="Criterio gaussiano")
+# Una diferencia de hasta 2 puntos de carga mental/estrés en un empleo se considera indiferente. Una diferencia de 5 puntos o más ya es una ventaja significativa.
 
 ```
 
@@ -429,10 +427,52 @@ plot(x,y_gaussiano,type="l",col="blue",main="Criterio gaussiano")
 
 # GRÁFICA DEL CRITERIO GAUSSIANO
 
-y_gaussiano <- sapply(x, function(xx) fpref.criterio_preflineal_di(xx, qi= 0, pi = 1, si=2))
+y_gaussiano <- sapply(x, function(xx) fpref.criterio_gaussiano_di(xx, qi= 0, pi = 1, si=2))
 
 plot(x,y_gaussiano,type="l",col="blue",main="Criterio gaussiano")
 
 ```
+### APLICACIÓN DEL MÉTODO PROMETHEE I
+
+```{r,echo=TRUE}
+
+tab.promethee_i = multicriterio.metodo.promethee_i(tabdecision_promethee, pesos.criterios,tab.fpref)
+
+tab.promethee_i
+
+```
+```{r,echo=TRUE,fig.align='center'}
+
+qgraph::qgraph(tab.promethee_i$tablarelacionsupera)
+
+```
+
+
+En este grafo vemos que todas las alternativas son superadas por al menos otra alternativa, menos "Profesor particular/Tutor", que no es dominada por ninguna. El método Promethee I nos dice que la mejor alternativa es esta.
+
+### APLICACIÓN DEL MÉTODO PROMETHEE II
+
+```{r,echo=TRUE}
+
+tab.promethee_ii = multicriterio.metodo.promethee_ii(tabdecision_promethee, pesos.criterios,tab.fpref)
+
+tab.promethee_ii
+
+```
+
+```{r,echo=TRUE,fig.align='center'}
+
+qgraph::qgraph(tab.promethee_ii$tablarelacionsupera)
+
+```
+
+### ORDENACIÓN FINAL DE LAS ALTERNATIVAS POR EL MÉTODO DE PROMETHEE II
+
+```{r,echo=TRUE}
+
+order(tab.promethee_ii$vflujos.netos, decreasing = TRUE)
+
+```
+La mejor alternativa vuelve a ser la de "Profesor particular/Tutor". Después le sigue "Cuidador de niños", "RRPP/Promotor de eventos","Dependiente", y por último como peor opción, "Empleo en hostelería/Servicios".
 
 (Justifica posibles diferencias entre métodos)
