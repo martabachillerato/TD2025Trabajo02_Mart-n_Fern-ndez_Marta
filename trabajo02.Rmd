@@ -446,9 +446,15 @@ tab.promethee_i
 qgraph::qgraph(tab.promethee_i$tablarelacionsupera)
 
 ```
+```{r,echo=TRUE}
 
+tab.promethee_i$tablarelacionsupera
 
-En este grafo vemos que todas las alternativas son superadas por al menos otra alternativa, menos "Profesor particular/Tutor", que no es dominada por ninguna. El método Promethee I nos dice que la mejor alternativa es esta.
+```
+
+En el grafo se representa esta tabla de la relación que hay entre las alternativas. Donde aparezca un 1, significará que la alternativa de esa fila supera a la alternativa de esta columna. Por ejemplo, de la fila de "RRPP" sacamos que supera a "Hostelería" y "Dependiente", por tanto, en la fila de "Hostelería" y "Dependiente" debería de aparecer un 0 en la columna de "RRPP", como vemos que ocurre. Así vamos conociendo estas relaciones.
+
+En el grafo, al igual que ocurre en la tabla anterior, vemos que todas las alternativas son superadas por al menos otra alternativa, menos "Profesor particular/Tutor", que no es superada por ninguna. El método Promethee I nos dice que la mejor alternativa es esta.
 
 ### APLICACIÓN DEL MÉTODO PROMETHEE II
 
@@ -473,6 +479,7 @@ qgraph::qgraph(tab.promethee_ii$tablarelacionsupera)
 order(tab.promethee_ii$vflujos.netos, decreasing = TRUE)
 
 ```
+
 La mejor alternativa vuelve a ser la de "Profesor particular/Tutor". Después le sigue "Cuidador de niños", "RRPP/Promotor de eventos","Dependiente", y por último como peor opción, "Empleo en hostelería/Servicios".
 
 (Justifica posibles diferencias entre métodos)
