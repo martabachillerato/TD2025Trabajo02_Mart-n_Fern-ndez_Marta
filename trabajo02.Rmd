@@ -1,28 +1,34 @@
 ---
-title: "trabajo02_Martín_Fernández"
+title: "ELECCIÓN DEL MEJOR TIPO DE EMPLEO PARA COMPAGINAR CON LOS ESTUDIOS UNIVERSITARIOS"
 author: "Marta Martín Fernández"
 date: "2025-10-28"
 output:
-  pdf_document: default
+  pdf_document:
+    toc: true           
+    toc_depth: 4
+    number_sections: true
+    fig_caption: true
   html_document: default
 ---
+
+\pagebreak
 
 Presentación (Presenta Gráficos; Motiva Problema);
 
 ENLACES:
 https://modelocurriculum.net/blog/trabajos-perfectos-para-compaginar-con-los-estudios
 
-TEMA : ELECCIÓN DEL MEJOR TIPO DE EMPLEO PARA COMPAGINAR CON LOS ESTUDIOS UNIVERSITARIOS
+# INTRODUCCIÓN
 
 He elegido este tema porque es un problema que afecta a muchos estudiantes universitarios que buscan equilibrar sus estudios con un empleo que les permita cubrir sus gastos y adquirir experiencia laboral relevante. La elección del tipo de empleo adecuado puede influir significativamente en el rendimiento académico y en la calidad de vida del estudiante. Además, este tema es relevante en el contexto actual, donde muchos estudiantes enfrentan desafíos financieros y buscan oportunidades laborales que se adapten a sus horarios y necesidades. Al analizar las diferentes opciones de empleo, se pueden considerar factores como la flexibilidad horaria, la remuneración, la relevancia para la carrera académica y el ambiente laboral. Este análisis puede ayudar a los estudiantes a tomar decisiones informadas sobre qué tipo de empleo es más adecuado para ellos, permitiéndoles maximizar tanto su desarrollo académico como profesional.
 
 Es un tema que me motiva debido a que ha sido una decisión que he tenido que tomar en el pasado, ya que necesitaba un empleo que pudiera compaginar con mi estudio en la universidad, y es una decisión que tienen que tomar mucho de los estudiantes universitarios año tras año.
 
-# Definición del problema
+# DEFINICIÓN DEL PROBLEMA
 
 El problema consiste en seleccionar el mejor tipo de empleo para un estudiante universitario que busca equilibrar sus estudios con un trabajo que le permita cubrir sus gastos y adquirir experiencia laboral relevante. Se deben considerar varios criterios y alternativas para tomar una decisión informada mediante el uso de las técnicas de toma de decisiones multicriterio (AHP, ELECTRE, PROMETHEE).
 
-# Alternativas (Opciones de empleo)
+# ALTERNATIVAS (OPCIONES DE EMPLEO)
 
 Vamos a considerar 4 tipos de empleo comunes entre los estudiantes universitarios:
 
@@ -46,7 +52,7 @@ A5: CUIDADOR DE NIÑOS.
 
 DESCRIPCIÓN: Fácil empleo para los estudiantes con horario flexible, que puede adaptarse a la organización del estudiante.
 
-# Criterios y Subcriterios
+# CRITERIOS Y SUBCRITERIOS
 
 Hemos definido cuatro criterios principales y un total de 8 subcriterios para evaluar las alternativas de empleo:
      
@@ -130,6 +136,7 @@ Tenemos que maximizar los subcriterios C1.1, C1.2, C2.1, C3.1, C3.2, C4.1 y C4.2
 Los pesos asignados a cada uno de estos subcriterios son: W=(0.25, 0.10 , 0.15, 0.15, 0.05, 0.05, 0.15 , 0.10).
 
 La matriz de decisión viene recogida en la siguiente tabla: 
+
 ```{r tabla-electre, echo=FALSE}
 
 matriz_decision_data <- data.frame(
@@ -238,7 +245,7 @@ Probando a reducir el valor de alpha numerosas veces hasta llegar a un límite e
 (0.10), sigue sin aparecer dominancia en el grafo. Esto indica que necesitamos modificar también los valores
 del vector de discordancia.
 
-```{r,echo=TRUE,fit.align='center'}
+```{r,echo=TRUE,fig.align='center'}
 
 salida_electre_d= multicriterio.metodoELECTRE_I(metodo_electre, pesos.criterios=
 c(0.25, 0.10 , 0.15, 0.15, 0.05, 0.05, 0.15 , 0.10), nivel.concordancia.minimo.alpha=0.65, no.se.compensan=c(6,5,5,7,6,4,5,8),que.alternativas = c(2,3))
@@ -246,10 +253,8 @@ c(0.25, 0.10 , 0.15, 0.15, 0.05, 0.05, 0.15 , 0.10), nivel.concordancia.minimo.a
 qgraph::qgraph(salida_electre_d$relacion.dominante)
 
 ```
-Tras probar una serie de valores para el vector de discordancia, se obtiene que A2 domina a A3 con
-d=(6,5,5,7,6,4,5,8), que es el vector de discordancia mínimamente ajustado. Tras observar esta solución,
-podemos decir que la alternativa A2 domina a la alternativa A3, por lo que la mejor opción es “Profesor
-particular/Tutor”.
+
+Tras probar una serie de valores para el vector de discordancia, se obtiene que A2 domina a A3 con d=(6,5,5,7,6,4,5,8), que es el vector de discordancia mínimamente ajustado. Tras observar esta solución, podemos decir que la alternativa A2 domina a la alternativa A3, por lo que la mejor opción es “Profesor particular/Tutor”.
 
 # CÁLCULOS EN EL MÉTODO ELECTRE I
 
@@ -303,7 +308,7 @@ tab.fpref = matrix(c(2,3,1,0,1,0,1,0,3,0,5,0,5,2,5,0,1,0,1,0,4,3,6,0,6,0,1,2,3,0
 tab.fpref
 
 ```
-### REPRESENTACIÓN GRÁFICA DE LAS FUNCIONES DE PREFERENCIA
+## REPRESENTACIÓN GRÁFICA DE LAS FUNCIONES DE PREFERENCIA
 
 ```{r,echo=TRUE}
 
@@ -432,7 +437,7 @@ y_gaussiano <- sapply(x, function(xx) fpref.criterio_gaussiano_di(xx, qi= 0, pi 
 plot(x,y_gaussiano,type="l",col="blue",main="Criterio gaussiano")
 
 ```
-### APLICACIÓN DEL MÉTODO PROMETHEE I
+## APLICACIÓN DEL MÉTODO PROMETHEE I
 
 ```{r,echo=TRUE}
 
@@ -456,7 +461,7 @@ En el grafo se representa esta tabla de la relación que hay entre las alternati
 
 En el grafo, al igual que ocurre en la tabla anterior, vemos que todas las alternativas son superadas por al menos otra alternativa, menos "Profesor particular/Tutor", que no es superada por ninguna. El método Promethee I nos dice que la mejor alternativa es esta.
 
-### APLICACIÓN DEL MÉTODO PROMETHEE II
+## APLICACIÓN DEL MÉTODO PROMETHEE II
 
 ```{r,echo=TRUE}
 
@@ -481,6 +486,68 @@ order(tab.promethee_ii$vflujos.netos, decreasing = TRUE)
 ```
 
 La mejor alternativa vuelve a ser la de "Profesor particular/Tutor". Después le sigue "Cuidador de niños", "RRPP/Promotor de eventos","Dependiente", y por último como peor opción, "Empleo en hostelería/Servicios".
+
+## MÉTODO PROMETHEE I MEDIAS
+
+```{r,echo=TRUE}
+
+tab.promethee_i_med = multicriterio.metodo.promethee_i_med(tabdecision_promethee, pesos.criterios,tab.fpref)
+
+tab.promethee_i_med
+
+```
+```{r,echo=TRUE,fig.align='center'}
+
+qgraph::qgraph(tab.promethee_i_med$tablarelacionsupera)
+
+```
+Si volvemos a observar la tabla de las relaciones entre las alternativas, tenemos exactamente la misma tabla obtenida con el método promethee I sin medias. "Tutor" sigue siendo la mejor alternativa, como también podemos comprobar en el grafo, siendo la única alternativa que no es superada por ninguna otra.
+
+## MÉTODO PROMETHEE II MEDIAS
+
+```{r,echo=TRUE}
+
+tab.promethee_ii_med = multicriterio.metodo.promethee_ii_med(tabdecision_promethee, pesos.criterios,tab.fpref)
+
+tab.promethee_ii_med
+
+```
+
+```{r,echo=TRUE,fig.align='center'}
+
+qgraph::qgraph(tab.promethee_ii_med$tablarelacionsupera)
+
+```
+
+Obtenemos las mismas conclusiones que antes. 
+
+### ORDENACIÓN FINAL DE LAS ALTERNATIVAS POR EL MÉTODO DE PROMETHEE II MEDIAS
+
+```{r,echo=TRUE}
+
+order(tab.promethee_ii_med$vflujos.netos, decreasing = TRUE)
+
+```
+
+### COMPARACIÓN MÉTODO PROMETHEE II SIN MEDIAS Y CON MEDIAS
+
+```{r,echo=TRUE}
+
+order(tab.promethee_ii$vflujos.netos, decreasing = TRUE)
+
+```
+
+```{r,echo=TRUE}
+
+order(tab.promethee_ii_med$vflujos.netos, decreasing = TRUE)
+
+```
+Tanto con el método Promethee II con medias como con este mismo método sin medias, obtenemos la misma solución. Las mejores alternativas son, por orden:
+  1. Profesor particular/Tutor
+  2. Cuidador de niños
+  3. RRPP/Promotor de eventos
+  4. Dependiente
+  5. Empleo en hostelería/Servicios
 
 # MÉTODO PROMETHEE WINDOWS
 
