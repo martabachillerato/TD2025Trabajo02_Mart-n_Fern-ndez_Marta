@@ -9,6 +9,10 @@ output:
     number_sections: true
     fig_caption: true
   html_document: default
+header-includes: |
+  \usepackage{fvextra}
+  \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+  \RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breakanywhere=true,showspaces=false,showtabs=false}
 ---
 
 \pagebreak
@@ -121,11 +125,6 @@ C4. Desarrollo personal
      ESCALA: Escala del 1 (bajo) al 10 (alto).
      
 OBJETIVO: Maximizar, ya que buscamos que el empleo contribuya al crecimiento personal del estudiante, proporcionando un ambiente de trabajo positivo y oportunidades para desarrollar habilidades interpersonales y profesionales.
-
-AHPconR (Estudio Inconsistencia; Matrices de comparación 2 a 2 están
-bien, no usar: 1.5,…); 
-
-AHPconPaquete (Estudio Inconsistencia; Comentarios a tablas; Matrices de comparación 2 a 2 están bien); 
 
 Electre (Comenta el paso a paso seguido; Qué pesos distintos a AHP; Un solo paso; Muchas salidas innecesarias); 
 
@@ -290,7 +289,7 @@ Tenemos que maximizar los subcriterios C1.1, C1.2, C2.1, C3.1, C3.2, C4.1 y C4.2
 source("teoriadecision_funciones_multicriterio.R")
 source("teoriadecision_funciones_multicriterio_utiles.R")
 
-tabdecision_promethee = multicriterio.crea.matrizdecision(c(8,2,3,-7,4,1,6,8,15,1,8,-2,8,9,9,3,10,5,5,-8,5,2,7,10,9,1,7,-6,5,3,5,7,12,3,7,-5,3,5,8,5), numalternativas = 5, numcriterios = 8, v.nombresalt=c("Hostelería","Tutor","RRPP","Dependiente","Cuidador"), v.nombrescri=c("Salario","Beneficios","Cercanía","Estrés","Desarrollo","Relación_Estudios","Satisfacción","Relaciones"))
+tabdecision_promethee = multicriterio.crea.matrizdecision(c( 8, 2, 3, -7, 4, 1, 6, 8, 15, 1, 8, -2, 8, 9, 9, 3, 10, 5, 5, -8, 5, 2, 7, 10, 9, 1, 7, -6, 5, 3, 5, 7, 12, 3, 7, -5, 3, 5, 8, 5), numalternativas = 5, numcriterios = 8, v.nombresalt=c("Hostelería","Tutor","RRPP","Dependiente","Cuidador"), v.nombrescri=c("Salario", "Beneficios", "Cercanía", "Estrés", "Desarrollo", "Relación_Estudios", "Satisfacción", "Relaciones"))
 
 tabdecision_promethee
 
@@ -559,7 +558,7 @@ source("teoriadecision_funciones_multicriterio.R")
 source("teoriadecision_funciones_multicriterio_utiles.R")
 source("teoriadecision_funciones_multicriterio_diagram.R")
 
-tabdecision_promethee = multicriterio.crea.matrizdecision(c(8,2,3,-7,4,1,6,8,15,1,8,-2,8,9,9,3,10,5,5,-8,5,2,7,10,9,1,7,-6,5,3,5,7,12,3,7,-5,3,5,8,5), numalternativas = 5, numcriterios = 8, v.nombresalt=c("Hostelería","Tutor","RRPP","Dependiente","Cuidador"), v.nombrescri=c("Salario","Beneficios","Cercanía","Estrés","Desarrollo","Relación_Estudios","Satisfacción","Relaciones"))
+tabdecision_promethee = multicriterio.crea.matrizdecision(c(8, 2, 3, -7, 4, 1, 6, 8, 15 , 1, 8, -2, 8, 9, 9, 3, 10, 5, 5, -8, 5, 2, 7, 10, 9, 1, 7, -6, 5, 3, 5, 7, 12, 3, 7, -5, 3, 5, 8, 5), numalternativas = 5, numcriterios = 8, v.nombresalt=c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador"), v.nombrescri=c("Salario", "Beneficios", "Cercanía", "Estrés", "Desarrollo", "Relación_Estudios", "Satisfacción", "Relaciones"))
 
 pesos.criterios01=c(0.20, 0.15 , 0.20, 0.15, 0.10, 0.05, 0.10 , 0.05)
 
@@ -603,3 +602,113 @@ rownames(res$Acciones)
 ```
 
 (Justifica posibles diferencias entre métodos)
+
+AHPconR (Estudio Inconsistencia; Matrices de comparación 2 a 2 están
+bien, no usar: 1.5,…); 
+
+AHPconPaquete (Estudio Inconsistencia; Comentarios a tablas; Matrices de comparación 2 a 2 están bien); 
+
+# AHP CON R 
+
+## Matriz de subcriterios.
+
+En la siguiente matriz se muestran las preferencias entre los distintos criterios.
+
+| Criterio | Salario | Beneficios | Cercania | Estrés | Desarrollo | R.estudios | Satisfaccion | R.personal |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| *Salario* | 1 | 3 | 2 | 2 | 2 | 5 | 4 | 3 |
+| *Beneficios* | 1/3 | 1 | 1/3 | 1/2 | 2 | 2 | 2 | 1/2 |
+| *Cercania* | 1/2 | 3 | 1 | 1/2 | 2 | 4 | 2 | 3 |
+| *Estrés* | 1/2 | 2 | 2 | 1 | 3 | 4 | 2 | 2 |
+| *Desarrollo* | 1/2 | 1/2 | 1/2 | 1/3 | 1 | 2 | 2 | 3 |
+| *R.estudios* | 1/5 | 1/2 | 1/4 | 1/4 | 1/2 | 1 | 1/3 | 1/3 |
+| *Satisfaccion* | 1/4 | 1/2 | 1/2 | 1/2 | 1/2 | 3 | 1 | 3 |
+| *R.personal* | 1/3 | 2 | 1/3 | 1/2 | 1/3 | 3 | 1/3 | 1 |
+
+De la tabla podemos sacar conclusiones generales. Podemos comprobar que los criterios salario y estrés son más importantes que los demás, debido a que la cantidad de dinero que ganaría el estudiante trabajando es una motivación fundamental para escoger un trabajo u otro, y el estrés es otro factor importante teniendo en cuenta que es el riesgo más directo para el rendimiento académico. Otro criterio que observamos muy importante es la cercanía, ya que facilitará mucho al alumno la coordinación entre el trabajo y los estudios. Tener un trabajo lejos de casa puede incrementar el estrés y hacernos perder tiempo de estudio, afectándonos negativamente.
+
+Por otro lado, la relación con los estudios se sitúa consistentemente como el subcriterio de menor prioridad. Esto indica que, para el estudiante de este análisis, las necesidades a corto plazo (cubrir gastos y asegurar el rendimiento académico mediante la gestión del estrés y el tiempo) superan la importancia de que el empleo esté directamente relacionado con su currículum o carrera académica. 
+
+Los criterios de satisfacción personal y relación con los compañeros del trabajo se mantienen en un nivel de prioridad intermedio o bajo. Aunque son esenciales para el bienestar del estudiante, no se consideran prioritarios. 
+
+## Matrices de Alternativas/Criterios.
+
+### Criterio SALARIO
+
+| Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
+| :---: | :---: | :---: | :---: | :---: | 
+| *Hostelería* | 1 | 1/3 | 1/2 | 3 | 2 | 
+| *Tutor* | 3 | 1 | 2 | 5 | 4 | 
+| *RRPP* | 2 | 1/2 | 1 | 4 | 3 | 
+| *Dependiente* | 1/3 | 1/5 | 1/4 | 1 | 1/2 | 
+| *Cuidador* | 1/2 | 1/4 | 1/3 | 2 | 1 | 
+
+### Criterio BENEFICIOS
+
+| Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
+| :---: | :---: | :---: | :---: | :---: | 
+| *Hostelería* | 1 | 3 | 1/3 | 2 | 3 | 
+| *Tutor* | 1/3 | 1 | 1/5 | 1/3 | 1/2 | 
+| *RRPP* | 3 | 5 | 1 | 4 | 5 | 
+| *Dependiente* | 1/2 | 3 | 1/4 | 1 | 2 | 
+| *Cuidador* | 1/3 | 2 | 1/5 | 1/2 | 1 | 
+
+### Criterio CERCANÍA AL HOGAR
+
+| Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
+| :---: | :---: | :---: | :---: | :---: | 
+| *Hostelería* | 1 | 1/3 | 2 | 1/2 | 1/3 | 
+| *Tutor* | 3 | 1 | 4 | 3 | 1 | 
+| *RRPP* | 1/2 | 1/4 | 1 | 1/3 | 1/5 | 
+| *Dependiente* | 2 | 1/3 | 3 | 1 | 1/2 | 
+| *Cuidador* | 3 | 1 | 5 | 2 | 1 | 
+
+### Criterio CARGA MENTAL/ESTRÉS
+
+| Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
+| :---: | :---: | :---: | :---: | :---: | 
+| *Hostelería* | 1 | 1/5 | 4 | 1/3 | 1/2 | 
+| *Tutor* | 5 | 1 | 7 | 3 | 2 | 
+| *RRPP* | 1/4 | 1/7 | 1 | 1/5 | 1/6 | 
+| *Dependiente* | 3 | 1/3 | 5 | 1 | 1/2 | 
+| *Cuidador* | 2 | 1/2 | 6 | 2 | 1 | 
+
+### Criterio OPORTUNIDADES DESARROLLO PERSONAL
+
+| Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
+| :---: | :---: | :---: | :---: | :---: | 
+| *Hostelería* | 1 | 1/3 | 1/2 | 2 | 1/3 | 
+| *Tutor* | 3 | 1 | 2 | 4 | 1 | 
+| *RRPP* | 2 | 1/2 | 1 | 3 | 1/2 | 
+| *Dependiente* | 1/2 | 1/4 | 1/3 | 1 | 1/4 | 
+| *Cuidador* | 3 | 1 | 2 | 4 | 1 | 
+
+### Criterio RELACIÓN CON LOS ESTUDIOS
+
+| Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
+| :---: | :---: | :---: | :---: | :---: | 
+| *Hostelería* | 1 | 1/5 | 1/3 | 1 | 1/4 | 
+| *Tutor* | 5 | 1 | 4 | 5 | 6 | 
+| *RRPP* | 3 | 1/4 | 1 | 3 | 2 | 
+| *Dependiente* | 1 | 1/5 | 1/3 | 1 | 1/4 | 
+| *Cuidador* | 4 | 1/6 | 1/2 | 4 | 1 | 
+
+### Criterio SATISFACCIÓN PERSONAL
+
+| Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
+| :---: | :---: | :---: | :---: | :---: | 
+| *Hostelería* | 1 | 1/3 | 2 | 1/2 | 1/4 | 
+| *Tutor* | 3 | 1 | 4 | 3 | 1/2 | 
+| *RRPP* | 1/2 | 1/4 | 1 | 1/3 | 1/5 | 
+| *Dependiente* | 2 | 1/3 | 3 | 1 | 1/2 | 
+| *Cuidador* | 4 | 2 | 5 | 2 | 1 | 
+
+### Criterio RELACIÓN CON COMPAÑEROS Y JEFES
+
+| Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
+| :---: | :---: | :---: | :---: | :---: | 
+| *Hostelería* | 1 | 2 | 3 | 1/2 | 1 | 
+| *Tutor* | 1/2 | 1 | 3 | 1/2 | 1/2 | 
+| *RRPP* | 1/3 | 1/3 | 1 | 1/5 | 1/4 | 
+| *Dependiente* | 2 | 2 | 5 | 1 | 1 | 
+| *Cuidador* | 1 | 2 | 4 | 1 | 1 | 
