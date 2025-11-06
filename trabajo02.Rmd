@@ -635,8 +635,8 @@ Los criterios de satisfacción personal y relación con los compañeros del trab
 
 ### Criterio SALARIO
 
-| Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
-| :---: | :---: | :---: | :---: | :---: | 
+| Salario | Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
+| :---: | :---: | :---: | :---: | :---: | :---: | 
 | *Hostelería* | 1 | 1/3 | 1/2 | 3 | 2 | 
 | *Tutor* | 3 | 1 | 2 | 5 | 4 | 
 | *RRPP* | 2 | 1/2 | 1 | 4 | 3 | 
@@ -645,8 +645,8 @@ Los criterios de satisfacción personal y relación con los compañeros del trab
 
 ### Criterio BENEFICIOS
 
-| Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
-| :---: | :---: | :---: | :---: | :---: | 
+| Beneficios extras | Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
+| :---: | :---: | :---: | :---: | :---: | :---: | 
 | *Hostelería* | 1 | 3 | 1/3 | 2 | 3 | 
 | *Tutor* | 1/3 | 1 | 1/5 | 1/3 | 1/2 | 
 | *RRPP* | 3 | 5 | 1 | 4 | 5 | 
@@ -655,8 +655,8 @@ Los criterios de satisfacción personal y relación con los compañeros del trab
 
 ### Criterio CERCANÍA AL HOGAR
 
-| Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
-| :---: | :---: | :---: | :---: | :---: | 
+| Cercanía | Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
+| :---: | :---: | :---: | :---: | :---: | :---: | 
 | *Hostelería* | 1 | 1/3 | 2 | 1/2 | 1/3 | 
 | *Tutor* | 3 | 1 | 4 | 3 | 1 | 
 | *RRPP* | 1/2 | 1/4 | 1 | 1/3 | 1/5 | 
@@ -665,8 +665,8 @@ Los criterios de satisfacción personal y relación con los compañeros del trab
 
 ### Criterio CARGA MENTAL/ESTRÉS
 
-| Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
-| :---: | :---: | :---: | :---: | :---: | 
+| Estrés | Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
+| :---: | :---: | :---: | :---: | :---: | :---: | 
 | *Hostelería* | 1 | 1/5 | 4 | 1/3 | 1/2 | 
 | *Tutor* | 5 | 1 | 7 | 3 | 2 | 
 | *RRPP* | 1/4 | 1/7 | 1 | 1/5 | 1/6 | 
@@ -675,8 +675,8 @@ Los criterios de satisfacción personal y relación con los compañeros del trab
 
 ### Criterio OPORTUNIDADES DESARROLLO PERSONAL
 
-| Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
-| :---: | :---: | :---: | :---: | :---: | 
+| Desarrollo personal | Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
+| :---: | :---: | :---: | :---: | :---: | :---: | 
 | *Hostelería* | 1 | 1/3 | 1/2 | 2 | 1/3 | 
 | *Tutor* | 3 | 1 | 2 | 4 | 1 | 
 | *RRPP* | 2 | 1/2 | 1 | 3 | 1/2 | 
@@ -685,8 +685,8 @@ Los criterios de satisfacción personal y relación con los compañeros del trab
 
 ### Criterio RELACIÓN CON LOS ESTUDIOS
 
-| Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
-| :---: | :---: | :---: | :---: | :---: | 
+| R.Estudios | Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
+| :---: | :---: | :---: | :---: | :---: | :---: | 
 | *Hostelería* | 1 | 1/5 | 1/3 | 1 | 1/4 | 
 | *Tutor* | 5 | 1 | 4 | 5 | 6 | 
 | *RRPP* | 3 | 1/4 | 1 | 3 | 2 | 
@@ -695,8 +695,8 @@ Los criterios de satisfacción personal y relación con los compañeros del trab
 
 ### Criterio SATISFACCIÓN PERSONAL
 
-| Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
-| :---: | :---: | :---: | :---: | :---: | 
+| Satisfacción | Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
+| :---: | :---: | :---: | :---: | :---: | :---: | 
 | *Hostelería* | 1 | 1/3 | 2 | 1/2 | 1/4 | 
 | *Tutor* | 3 | 1 | 4 | 3 | 1/2 | 
 | *RRPP* | 1/2 | 1/4 | 1 | 1/3 | 1/5 | 
@@ -705,10 +705,201 @@ Los criterios de satisfacción personal y relación con los compañeros del trab
 
 ### Criterio RELACIÓN CON COMPAÑEROS Y JEFES
 
-| Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
-| :---: | :---: | :---: | :---: | :---: | 
+| Relación | Hostelería | Tutor | RRPP | Dependiente | Cuidador | 
+| :---: | :---: | :---: | :---: | :---: | :---: | 
 | *Hostelería* | 1 | 2 | 3 | 1/2 | 1 | 
 | *Tutor* | 1/2 | 1 | 3 | 1/2 | 1/2 | 
 | *RRPP* | 1/3 | 1/3 | 1 | 1/5 | 1/4 | 
 | *Dependiente* | 2 | 2 | 5 | 1 | 1 | 
 | *Cuidador* | 1 | 2 | 4 | 1 | 1 | 
+
+## EMPLEANDO LAS FUNCIONES VISTAS EN CLASE CON R
+
+### MÉTODO 1:
+
+– multicriterio.crea.matrizvaloraciones_mej()
+– multicriterio.metodoAHP.variante1.autovectormayorautovalor()
+– multicriterio.metodoAHP.pesosglobales_entabla()
+
+```{r,echo=TRUE}
+
+tabla_criterios = multicriterio.crea.matrizvaloraciones_mej(c(3, 2, 2, 2, 5, 4, 3, 1/3, 1/2, 2, 2, 2, 1/2, 1/2, 2, 4, 2, 3, 3, 4, 2, 2, 2, 2, 3, 1/3, 1/3, 3), numalternativas = 8,v.nombres.alternativas = c("Salario", "Beneficios", "Cercanía", "Estrés", "Desarrollo", "Relación_Estudios", "Satisfacción", "Relaciones"))
+
+tabla_criterios
+
+```
+
+```{r,echo=TRUE}
+
+tabsalario = multicriterio.crea.matrizvaloraciones_mej(c(1/3, 1/2, 3, 2, 2, 5, 4, 4, 3, 1/2), numalternativas = 5,v.nombres.alternativas = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador" ))
+
+tabsalario
+
+```
+
+```{r,echo=TRUE}
+
+tabbeneficios = multicriterio.crea.matrizvaloraciones_mej(c(3, 1/3, 2, 3, 1/5, 1/3,1/2, 4, 5, 2), numalternativas = 5,v.nombres.alternativas = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador" ))
+
+tabbeneficios
+
+```
+
+```{r,echo=TRUE}
+
+tabcercania = multicriterio.crea.matrizvaloraciones_mej(c(1/3, 2, 1/2, 1/3, 4, 3, 1, 1/3, 1/5, 1/2), numalternativas = 5,v.nombres.alternativas = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador" ))
+
+tabcercania
+
+```
+
+```{r,echo=TRUE}
+
+tabestres = multicriterio.crea.matrizvaloraciones_mej(c(1/5, 4, 1/3, 1/2, 7, 3, 2, 1/5, 1/6, 1/2), numalternativas = 5,v.nombres.alternativas = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador" ))
+
+tabestres
+
+```
+
+```{r,echo=TRUE}
+
+tabdesarrollopersonal = multicriterio.crea.matrizvaloraciones_mej(c(1/3, 1/2, 2, 1/3, 2, 4, 1, 3, 1/2, 1/4), numalternativas = 5,v.nombres.alternativas = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador" ))
+
+tabdesarrollopersonal
+
+```
+
+```{r,echo=TRUE}
+
+tabrelacionestudios = multicriterio.crea.matrizvaloraciones_mej(c(1/5, 1/3, 1, 1/4, 4, 5, 6, 3, 2, 1/4), numalternativas = 5,v.nombres.alternativas = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador" ))
+
+tabrelacionestudios
+
+```
+
+```{r,echo=TRUE}
+
+tabsatisfaccion = multicriterio.crea.matrizvaloraciones_mej(c(1/3, 2, 1/2, 1/4, 4, 3, 1/2, 1/3, 1/5, 1/2), numalternativas = 5,v.nombres.alternativas = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador" ))
+
+tabsatisfaccion
+
+```
+
+```{r,echo=TRUE}
+
+tabrelaciontrabajo = multicriterio.crea.matrizvaloraciones_mej(c(2, 3, 1/2, 1, 3, 1/2, 1/2, 1/5, 1/4, 1), numalternativas = 5,v.nombres.alternativas = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador" ))
+
+tabrelaciontrabajo
+
+```
+
+PESOS LOCALES:
+
+```{r,echo=T}
+
+pesos_locales_criterios = multicriterio.metodoAHP.variante1.autovectormayorautovalor(tabla_criterios)
+
+pesos_locales_criterios
+
+```
+
+```{r,echo=T}
+
+pesos_locales_salario = multicriterio.metodoAHP.variante1.autovectormayorautovalor(tabsalario)
+
+pesos_locales_salario$valoraciones.ahp
+
+```
+
+```{r,echo=T}
+
+pesos_locales_beneficios = multicriterio.metodoAHP.variante1.autovectormayorautovalor(tabbeneficios)
+
+pesos_locales_beneficios$valoraciones.ahp
+
+```
+```{r,echo=T}
+
+pesos_locales_cercania = multicriterio.metodoAHP.variante1.autovectormayorautovalor(tabcercania)
+
+pesos_locales_cercania$valoraciones.ahp
+
+```
+```{r,echo=T}
+
+pesos_locales_estres = multicriterio.metodoAHP.variante1.autovectormayorautovalor(tabestres)
+
+pesos_locales_estres$valoraciones.ahp
+
+```
+```{r,echo=T}
+
+pesos_locales_desarrollo = multicriterio.metodoAHP.variante1.autovectormayorautovalor(tabdesarrollopersonal)
+
+pesos_locales_desarrollo$valoraciones.ahp
+
+```
+```{r,echo=T}
+
+pesos_locales_relacionestudios = multicriterio.metodoAHP.variante1.autovectormayorautovalor(tabrelacionestudios)
+
+pesos_locales_relacionestudios$valoraciones.ahp
+
+```
+```{r,echo=T}
+
+pesos_locales_satisfaccion = multicriterio.metodoAHP.variante1.autovectormayorautovalor(tabsatisfaccion)
+
+pesos_locales_satisfaccion$valoraciones.ahp
+
+```
+```{r,echo=T}
+
+pesos_locales_relaciontrabajo = multicriterio.metodoAHP.variante1.autovectormayorautovalor(tabrelaciontrabajo)
+
+pesos_locales_relaciontrabajo$valoraciones.ahp
+
+```
+PESOS GLOBALES:
+
+```{r,echo=TRUE}
+
+pesos_globales = multicriterio.metodoAHP.pesosglobales_entabla(pesos_locales_criterios$valoraciones.ahp, rbind(pesos_locales_salario$valoraciones.ahp,pesos_locales_beneficios$valoraciones.ahp, pesos_locales_cercania$valoraciones.ahp, pesos_locales_estres$valoraciones.ahp,  pesos_locales_desarrollo$valoraciones.ahp, pesos_locales_relacionestudios$valoraciones.ahp, pesos_locales_satisfaccion$valoraciones.ahp, pesos_locales_relaciontrabajo$valoraciones.ahp))
+
+pesos_globales
+
+```
+Observando los pesos globales, podemos observar que la mejor alternativa es la de profesor particular o tutor, con un peso global del 33.7%. Después de esta, viene cuidador de niños con un peso de 22.34%, y RRPP con un 16.54%. Por último, las peores alternativas serían dependiente y hostelería, con unos pesos relativamente similares, 13.81% y 13.59%. Se vuelve a repetir que la mejor alternativa es la de Tutor, igual que hemos comprobado con los demás métodos.
+
+### MÉTODO 2:
+
+```{r,echo=TRUE}
+
+matriz.criterios=multicriterio.crea.matrizvaloraciones(c(1, 3, 2, 2, 2, 5, 4, 3, 1/3, 1, 1/3, 1/2, 2, 2, 2, 1/2, 1/2, 3, 1, 1/2, 2, 4, 2, 3, 1/2, 2, 2, 1, 3, 4, 2, 2, 1/2, 1/2, 1/2, 1/3, 1, 2, 2, 3, 1/5, 1/2, 1/4, 1/4, 1/2, 1, 1/3, 1/3, 1/4, 1/2, 1/2, 1/2, 1/2, 3, 1, 3, 1/3, 2, 1/3, 1/2, 1/3, 3, 1/3, 1),numalternativas = 8,v.nombres.alternativas = c("Salario", "Beneficios", "Cercanía", "Estrés", "Desarrollo", "Relación_Estudios", "Satisfacción", "Relaciones"))
+
+matriz.costo=multicriterio.crea.matrizvaloraciones(c(1,1/3,6,3,1,8,1/6,1/8,1),numalternativas = 3,v.nombres.alternativas = c("Alt.A","Alt.B","Alt.C"))
+
+matriz.confiabilidad=multicriterio.crea.matrizvaloraciones(c(1,6,2,1/6,1,1/3,1/2,3,1),numalternativas = 3,v.nombres.alternativas = c("Alt.A","Alt.B","Alt.C"))
+
+matriz.plazo_entrega=multicriterio.crea.matrizvaloraciones(c(1,8,1,1/8,1,1/8,1,8,1),numalternativas = 3,v.nombres.alternativas = c("Alt.A","Alt.B","Alt.C"))
+
+num.alt6=3
+
+num.cri6=3
+
+matriznivel2_6=array(NA,dim=c(num.alt6,num.alt6,num.cri6))
+
+matriznivel2_6[,,1] = matriz.costo
+
+matriznivel2_6[,,2] = matriz.confiabilidad
+
+matriznivel2_6[,,3] = matriz.plazo_entrega
+
+solucion_metodo2_6 = multicriterio.metodoAHP.variante3.completo(matriz.criterios6,matriznivel2_6)
+
+solucion_metodo2_6$pesos.globales
+
+```
+
+La mejor alternativa volvemos a comprobar que es la 2, con un peso global mayor.
+52.1%
