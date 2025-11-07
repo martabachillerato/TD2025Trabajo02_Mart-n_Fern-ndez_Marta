@@ -1,0 +1,152 @@
+Version: 2.0
+Alternatives: &alternatives
+  Hostelería:
+  Tutor:
+  RRPP:
+  Dependiente:
+  Cuidador:
+Goal:
+  name: Aplicar AHP
+  preferences:
+    pairwise:
+      - [Salario, Beneficios, 3]
+      - [Salario, Cercanía, 2]
+      - [Salario, Estrés, 2]
+      - [Salario, Desarrollo_profesional, 2]
+      - [Salario, Relación_estudios, 5]
+      - [Salario, Satisfacción, 4]
+      - [Salario, Relación_trabajo, 3]
+      - [Beneficios, Cercanía, 1/3]
+      - [Beneficios, Estrés, 1/2]
+      - [Beneficios, Desarrollo_profesional, 2]
+      - [Beneficios, Relación_estudios, 2]
+      - [Beneficios, Satisfacción, 2]
+      - [Beneficios, Relación_trabajo, 1/2]
+      - [Cercanía, Estrés, 1/2]
+      - [Cercanía, Desarrollo_profesional, 2]
+      - [Cercanía, Relación_estudios, 4]
+      - [Cercanía, Satisfacción, 2]
+      - [Cercanía, Relación_trabajo, 3]
+      - [Estrés, Desarrollo_profesional, 3]
+      - [Estrés, Relación_estudios, 4]
+      - [Estrés, Satisfacción, 2]
+      - [Estrés, Relación_trabajo, 2]
+      - [Desarrollo_profesional, Relación_estudios, 2]
+      - [Desarrollo_profesional, Satisfacción, 2]
+      - [Desarrollo_profesional, Relación_trabajo, 3]
+      - [Relación_estudios, Satisfacción, 1/3]
+      - [Relación_estudios, Relación_trabajo, 1/3]
+      - [Satisfacción, Relación_trabajo, 3]
+  children:
+    Salario:
+      preferences:
+        pairwise:
+          - [Hostelería, Tutor, 1/3]
+          - [Hostelería, RRPP, 1/2]
+          - [Hostelería, Dependiente, 3]
+          - [Hostelería, Cuidador, 2]
+          - [Tutor, RRPP, 2]
+          - [Tutor, Dependiente, 5]
+          - [Tutor, Cuidador, 4]
+          - [RRPP, Dependiente, 4]
+          - [RRPP, Cuidador, 3]
+          - [Dependiente, Cuidador, 1/2]
+      children: *alternatives
+    Beneficios:
+      preferences:
+        pairwise:
+          - [Hostelería, Tutor, 3]
+          - [Hostelería, RRPP, 1/3]
+          - [Hostelería, Dependiente, 2]
+          - [Hostelería, Cuidador, 3]
+          - [Tutor, RRPP, 1/5]
+          - [Tutor, Dependiente, 1/3]
+          - [Tutor, Cuidador, 1/2]
+          - [RRPP, Dependiente, 4]
+          - [RRPP, Cuidador, 5]
+          - [Dependiente, Cuidador, 2]
+      children: *alternatives
+    Cercanía:
+      preferences:
+        pairwise:
+          - [Hostelería, Tutor, 1/3]
+          - [Hostelería, RRPP, 3]
+          - [Hostelería, Dependiente, 1/2]
+          - [Hostelería, Cuidador, 1/3]
+          - [Tutor, RRPP, 4]
+          - [Tutor, Dependiente, 3]
+          - [Tutor, Cuidador, 1]
+          - [RRPP, Dependiente, 1/3]
+          - [RRPP, Cuidador, 1/5]
+          - [Dependiente, Cuidador, 1/2]
+      children: *alternatives
+    Estrés:
+      preferences:
+        pairwise:
+          - [Hostelería, Tutor, 1/5]
+          - [Hostelería, RRPP, 4]
+          - [Hostelería, Dependiente, 1/3]
+          - [Hostelería, Cuidador, 1/2]
+          - [Tutor, RRPP, 7]
+          - [Tutor, Dependiente, 3]
+          - [Tutor, Cuidador, 2]
+          - [RRPP, Dependiente, 1/5]
+          - [RRPP, Cuidador, 1/6]
+          - [Dependiente, Cuidador, 1/2]
+      children: *alternatives
+    Desarrollo_profesional:
+      preferences:
+        pairwise:
+          - [Hostelería, Tutor, 1/3]
+          - [Hostelería, RRPP, 1/2]
+          - [Hostelería, Dependiente, 2]
+          - [Hostelería, Cuidador, 1/3]
+          - [Tutor, RRPP, 2]
+          - [Tutor, Dependiente, 4]
+          - [Tutor, Cuidador, 1]
+          - [RRPP, Dependiente, 3]
+          - [RRPP, Cuidador, 1/2]
+          - [Dependiente, Cuidador, 1/4]
+      children: *alternatives
+    Relación_estudios:
+      preferences:
+        pairwise:
+          - [Hostelería, Tutor, 1/5]
+          - [Hostelería, RRPP, 1/3]
+          - [Hostelería, Dependiente, 1]
+          - [Hostelería, Cuidador, 1/4]
+          - [Tutor, RRPP, 4]
+          - [Tutor, Dependiente, 5]
+          - [Tutor, Cuidador, 6]
+          - [RRPP, Dependiente, 3]
+          - [RRPP, Cuidador, 2]
+          - [Dependiente, Cuidador, 1/4]
+      children: *alternatives
+    Satisfacción:
+      preferences:
+        pairwise:
+          - [Hostelería, Tutor, 1/3]
+          - [Hostelería, RRPP, 2]
+          - [Hostelería, Dependiente, 1/2]
+          - [Hostelería, Cuidador, 1/4]
+          - [Tutor, RRPP, 4]
+          - [Tutor, Dependiente, 3]
+          - [Tutor, Cuidador, 1/2]
+          - [RRPP, Dependiente, 1/3]
+          - [RRPP, Cuidador, 1/5]
+          - [Dependiente, Cuidador, 1/2]
+      children: *alternatives
+    Relación_trabajo:
+      preferences:
+        pairwise:
+          - [Hostelería, Tutor, 2]
+          - [Hostelería, RRPP, 3]
+          - [Hostelería, Dependiente, 1/2]
+          - [Hostelería, Cuidador, 1]
+          - [Tutor, RRPP, 3]
+          - [Tutor, Dependiente, 1/2]
+          - [Tutor, Cuidador, 1/2]
+          - [RRPP, Dependiente, 1/5]
+          - [RRPP, Cuidador, 1/4]
+          - [Dependiente, Cuidador, 1]
+      children: *alternatives

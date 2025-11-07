@@ -875,31 +875,137 @@ Observando los pesos globales, podemos observar que la mejor alternativa es la d
 
 ```{r,echo=TRUE}
 
-matriz.criterios=multicriterio.crea.matrizvaloraciones(c(1, 3, 2, 2, 2, 5, 4, 3, 1/3, 1, 1/3, 1/2, 2, 2, 2, 1/2, 1/2, 3, 1, 1/2, 2, 4, 2, 3, 1/2, 2, 2, 1, 3, 4, 2, 2, 1/2, 1/2, 1/2, 1/3, 1, 2, 2, 3, 1/5, 1/2, 1/4, 1/4, 1/2, 1, 1/3, 1/3, 1/4, 1/2, 1/2, 1/2, 1/2, 3, 1, 3, 1/3, 2, 1/3, 1/2, 1/3, 3, 1/3, 1),numalternativas = 8,v.nombres.alternativas = c("Salario", "Beneficios", "Cercanía", "Estrés", "Desarrollo", "Relación_Estudios", "Satisfacción", "Relaciones"))
+matriz.criterios=multicriterio.crea.matrizvaloraciones(
+    c(1, 3, 2, 2, 2, 5, 4, 3, 1/3, 1, 1/3, 1/2, 2, 2, 2, 1/2, 1/2, 3, 1, 1/2, 2, 4, 2, 3, 1/2, 2, 2, 1, 3, 4, 2, 2, 1/2, 1/2, 1/2, 1/3, 1, 2, 2, 3, 1/5, 1/2, 1/4, 1/4, 1/2, 1, 1/3, 1/3, 1/4, 1/2, 1/2, 1/2, 1/2, 3, 1, 3, 1/3, 2, 1/3, 1/2, 1/3, 3, 1/3, 1),
+    numalternativas = 8,v.nombres.alternativas = c("Salario", "Beneficios", "Cercanía", "Estrés", "Desarrollo", "Relación_Estudios", "Satisfacción", "Relaciones"))
 
-matriz.costo=multicriterio.crea.matrizvaloraciones(c(1,1/3,6,3,1,8,1/6,1/8,1),numalternativas = 3,v.nombres.alternativas = c("Alt.A","Alt.B","Alt.C"))
+matriz.salario=multicriterio.crea.matrizvaloraciones(
+    c(1, 1/3, 1/2, 3, 2, 3, 1, 2, 5, 4, 2, 1/2, 1, 4, 3, 1/3, 1/5, 1/4, 1, 1/2, 1/2, 1/4, 1/3, 2, 1),
+    numalternativas = 5,v.nombres.alternativas = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador" ))
 
-matriz.confiabilidad=multicriterio.crea.matrizvaloraciones(c(1,6,2,1/6,1,1/3,1/2,3,1),numalternativas = 3,v.nombres.alternativas = c("Alt.A","Alt.B","Alt.C"))
+matriz.beneficios=multicriterio.crea.matrizvaloraciones(
+    c(1, 3, 1/3, 2, 3, 1/3, 1, 1/5, 1/3, 1/2, 3, 5, 1, 4, 5, 1/2, 3, 1/4, 1, 2, 1/3, 2, 1/5, 1/2, 1),
+    numalternativas = 5,v.nombres.alternativas = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador" ))
 
-matriz.plazo_entrega=multicriterio.crea.matrizvaloraciones(c(1,8,1,1/8,1,1/8,1,8,1),numalternativas = 3,v.nombres.alternativas = c("Alt.A","Alt.B","Alt.C"))
+matriz.cercania=multicriterio.crea.matrizvaloraciones(
+    c(1, 1/3, 2, 1/2, 1/3, 3, 1, 4, 3, 1, 1/2, 1/4, 1, 1/3, 1/5, 2, 1/3, 3, 1, 1/2, 3, 1, 5, 2, 1),
+    numalternativas = 5,v.nombres.alternativas = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador" ))
 
-num.alt6=3
+matriz.estres=multicriterio.crea.matrizvaloraciones(
+    c(1, 1/5, 4, 1/3, 1/2, 5, 1, 7, 3, 2, 1/4, 1/7, 1, 1/5, 1/6, 3, 1/3, 5, 1, 1/2, 2, 1/2, 6, 2, 1),
+    numalternativas = 5,v.nombres.alternativas = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador" ))
 
-num.cri6=3
+matriz.desarrollopersonal=multicriterio.crea.matrizvaloraciones(
+    c(1, 1/3, 1/2, 2, 1/3, 3, 1, 2, 4, 1, 2, 1/2, 1, 3, 1/2, 1/2, 1/4, 1/3, 1, 1/4, 3, 1, 2, 4, 1),
+    numalternativas = 5,v.nombres.alternativas = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador" ))
 
-matriznivel2_6=array(NA,dim=c(num.alt6,num.alt6,num.cri6))
+matriz.relacionestudios=multicriterio.crea.matrizvaloraciones(
+    c(1, 1/5, 1/3, 1, 1/4, 5, 1, 4, 5, 6, 3, 1/4, 1, 3, 2, 1, 1/5, 1/3, 1, 1/4, 4, 1/6, 1/2, 4, 1),
+    numalternativas = 5,v.nombres.alternativas = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador" ))
 
-matriznivel2_6[,,1] = matriz.costo
+matriz.satisfaccion=multicriterio.crea.matrizvaloraciones(
+    c(1, 1/3, 2, 1/2, 1/4, 3, 1, 4, 3, 1/2, 1/2, 1/4, 1, 1/3, 1/5, 2, 1/3, 3, 1, 1/2, 4, 2, 5, 2, 1),
+    numalternativas = 5,v.nombres.alternativas = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador" ))
 
-matriznivel2_6[,,2] = matriz.confiabilidad
+matriz.relaciontrabajo=multicriterio.crea.matrizvaloraciones(
+    c(1, 2, 3, 1/2, 1, 1/2, 1, 3, 1/2, 1/2, 1/3, 1/3, 1, 1/5, 1/4, 2, 2, 5, 1, 1, 1, 2, 4, 1, 1),
+    numalternativas = 5,v.nombres.alternativas = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador" ))
 
-matriznivel2_6[,,3] = matriz.plazo_entrega
+num.alt=5
+num.cri=8
+matriznivel2=array(NA,dim=c(num.alt,num.alt,num.cri))
 
-solucion_metodo2_6 = multicriterio.metodoAHP.variante3.completo(matriz.criterios6,matriznivel2_6)
+matriznivel2[,,1] = matriz.salario
+matriznivel2[,,2] = matriz.beneficios
+matriznivel2[,,3] = matriz.cercania
+matriznivel2[,,4] = matriz.estres
+matriznivel2[,,5] = matriz.desarrollopersonal
+matriznivel2[,,6] = matriz.relacionestudios
+matriznivel2[,,7] = matriz.satisfaccion
+matriznivel2[,,8] = matriz.relaciontrabajo
 
-solucion_metodo2_6$pesos.globales
+solucion_metodo2 = multicriterio.metodoAHP.variante3.completo(matriz.criterios,matriznivel2)
+
+solucion_metodo2$pesos.globales
+
+```
+Obtenemos los pesos globales, y podemos volver a observar que la mejor alternativa es la de profesor particular o tutor, con un peso global de 33.43%. Después de esta, viene cuidador de niños con un peso de 22.4%, y RRPP con un 16.51%. Por último, las peores alternativas serían dependiente y hostelería, con unos pesos relativamente similares, 13.91% y 13.76%. Se vuelve a repetir que la mejor alternativa es la de Tutor, igual que hemos comprobado con los demás métodos.
+
+## EMPLEANDO EL PAQUETE AHP
+
+### MÉTODO 1:
+
+– multicriterio.crea.matrizvaloraciones_mej()
+– multicriterio.metodoahp.diagrama()
+
+En forma de diagrama:
+
+```{r,echo=TRUE}
+
+source("teoriadecision_funciones_multicriterio_diagram.R")
+
+matriznivel2_metodo3 = array(NA,dim=c(5,5,8))
+# 5 filas
+# 5 columnas
+# 8 matrices 5x5
+
+matriznivel2_metodo3[,,1] = matriz.salario
+matriznivel2_metodo3[,,2] = matriz.beneficios
+matriznivel2_metodo3[,,3] = matriz.cercania
+matriznivel2_metodo3[,,4] = matriz.estres
+matriznivel2_metodo3[,,5] = matriz.desarrollopersonal
+matriznivel2_metodo3[,,6] = matriz.relacionestudios
+matriznivel2_metodo3[,,7] = matriz.satisfaccion
+matriznivel2_metodo3[,,8] = matriz.relaciontrabajo
+
+row.names(matriznivel2_metodo3) = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador")
+
+colnames(matriznivel2_metodo3) = c("Hostelería", "Tutor", "RRPP", "Dependiente", "Cuidador")
+
+matriznivel2_metodo3
 
 ```
 
-La mejor alternativa volvemos a comprobar que es la 2, con un peso global mayor.
-52.1%
+```{r,echo=TRUE, fig.align='center'}
+
+multicriterio.metodoahp.diagrama(matriz.criterios,matriznivel2_metodo3)
+
+```
+
+En el diagrama podemos observar que la mejor alternativa es la de profesor particular o tutor, con un peso global de 33.43%. Después de esta, viene cuidador de niños con un peso de 22.4%, y RRPP con un 16.51%. Por último, las peores alternativas serían dependiente y hostelería, con unos pesos relativamente similares, 13.91% y 13.75%. Se vuelve a repetir que la mejor alternativa es la de Tutor, igual que hemos comprobado con los demás métodos.
+
+# MÉTODO 2: USO DEL PAQUETE AHP
+
+```{r,echo=TRUE, fig.align='center'}
+
+library(ahp)
+ahp::RunGUI()
+
+datos = Load("ahptrabajo.ahp")
+Calculate(datos)
+
+Visualize(datos)
+
+```
+
+TABLA SOLUCIÓN:
+
+```{r,echo=TRUE}
+
+# export_formattable(AnalyzeTable(datos), file = "tablatrabajo.png")
+
+```
+
+En la foto que hemos exportado vemos que la mejor alternativa es la de profesor particular/tutor, como en los demás métodos, con un peso global de 33.7%. Después le sigue cuidador, con un 22.3%, y RRPP, con un 16.5%. Por último, las peores alternativas son dependiente y hostelería, ambas con un peso global de 13.8%. 
+
+TABLA SOLUCIÓN DE PESOS LOCALES:
+
+```{r,echo=TRUE}
+
+t2 = AnalyzeTable(datos, variable = "priority")
+
+# export_formattable(t2, file = "tablabtrabajo.png")
+
+```
+
+En esta nueva tabla podemos corroborar la importancia de cada criterio para encontrar la mejor alternativa. El salario ha sido el factor más influyente, con un 25.3%, seguidos del estrés y la cercanía al hogar, con 18.5% y 16.3% respectivamente. Los siguientes factores importantes han sido los beneficios extras que puedes conseguir en el trabajo, con un 9.4%, la satisfacción personal con un 8.8%, y la relación del trabajo con nuestros estudios, con un 7.7%. El factor que menos importancia ha tenido a la hora de elegir la opción ha sido la relación dentro del trabajo con nuestros compañeros y jefes, con un 3.8%, ya que en nuestro caso buscamos un trabajo para compaginar con los estudios y conseguir dinero fácil, no necesariamente de lo que hayamos estudiado.
