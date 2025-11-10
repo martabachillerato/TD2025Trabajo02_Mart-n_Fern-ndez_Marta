@@ -3,12 +3,12 @@ title: "ELECCIÓN DEL MEJOR TIPO DE EMPLEO PARA COMPAGINAR CON LOS ESTUDIOS UNIV
 author: "Marta Martín Fernández"
 date: "2025-10-28"
 output:
+  html_document: default
   pdf_document:
     toc: true           
     toc_depth: 4
     number_sections: true
     fig_caption: true
-  html_document: default
 header-includes: |
   \usepackage{fvextra}
   \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
@@ -125,8 +125,6 @@ C4. Desarrollo personal
      ESCALA: Escala del 1 (bajo) al 10 (alto).
      
 OBJETIVO: Maximizar, ya que buscamos que el empleo contribuya al crecimiento personal del estudiante, proporcionando un ambiente de trabajo positivo y oportunidades para desarrollar habilidades interpersonales y profesionales.
-
-Electre (Comenta el paso a paso seguido; Qué pesos distintos a AHP; Un solo paso; Muchas salidas innecesarias); 
 
 # MÉTODO ELECTRE 
 
@@ -277,8 +275,6 @@ e1$Nucleo
 
 ```
 Con el método ELECTRE I nos salen los mismos resultados que con el método ELECTRE anterior. El núcleo sigue estando compuesto por las alternativas 2 y 3, y siguen existiendo las mismas dominancias entre las alternativas, como vemos con el código e1$Grafo.
-
-Promethee (Hace Promethee R y Windows; Qué Pesos distintos a AHP; Explicaciones); Conclusiones
 
 # MÉTODO PROMETHEE
 
@@ -600,13 +596,6 @@ En esta tabla volvemos a observar los valores de Phi obtenidos para cada alterna
 rownames(res$Acciones)
 
 ```
-
-(Justifica posibles diferencias entre métodos)
-
-AHPconR (Estudio Inconsistencia; Matrices de comparación 2 a 2 están
-bien, no usar: 1.5,…); 
-
-AHPconPaquete (Estudio Inconsistencia; Comentarios a tablas; Matrices de comparación 2 a 2 están bien); 
 
 # AHP CON R 
 
@@ -1008,4 +997,73 @@ t2 = AnalyzeTable(datos, variable = "priority")
 
 ```
 
-En esta nueva tabla podemos corroborar la importancia de cada criterio para encontrar la mejor alternativa. El salario ha sido el factor más influyente, con un 25.3%, seguidos del estrés y la cercanía al hogar, con 18.5% y 16.3% respectivamente. Los siguientes factores importantes han sido los beneficios extras que puedes conseguir en el trabajo, con un 9.4%, la satisfacción personal con un 8.8%, y la relación del trabajo con nuestros estudios, con un 7.7%. El factor que menos importancia ha tenido a la hora de elegir la opción ha sido la relación dentro del trabajo con nuestros compañeros y jefes, con un 3.8%, ya que en nuestro caso buscamos un trabajo para compaginar con los estudios y conseguir dinero fácil, no necesariamente de lo que hayamos estudiado.
+En esta nueva tabla podemos corroborar la importancia de cada criterio para encontrar la mejor alternativa. El salario ha sido el factor más influyente, con un 25.3%, seguidos del estrés y la cercanía al hogar, con 18.5% y 16.3% respectivamente. El desarrollo profesional ocupa un 10.3% de la prioridad. Los siguientes factores importantes han sido los beneficios extras que puedes conseguir en el trabajo, con un 9.4%, la satisfacción personal con un 8.8%, y la relación dentro del trabajo con nuestos compañeros y jefes. El factor que menos importancia ha tenido a la hora de elegir la opción ha sido la relación del trabajo con los estudios que estamos realizando con un 3.8%, ya que en nuestro caso buscamos un trabajo para compaginar con los estudios y conseguir dinero fácil, no necesariamente de lo que hayamos estudiado.
+
+Vamos a estudiar la inconsistencia de las matrices de datos que tenemos.
+El análisis de inconsistencia es la forma de validar subjetivamente la entrada de nuestro modelo AHP. Si todas las matrices son consistentes, el modelo es sólido y se puede confiar en las prioridades y conclusiones obtenidas.
+
+```{r,echo=TRUE}
+
+pesos_locales_criterios$consistencia
+
+```
+
+```{r,echo=TRUE}
+
+pesos_locales_salario$consistencia
+
+```
+
+```{r,echo=TRUE}
+
+pesos_locales_beneficios$consistencia
+
+```
+
+```{r,echo=TRUE}
+
+pesos_locales_cercania$consistencia
+
+```
+
+```{r,echo=TRUE}
+
+pesos_locales_estres$consistencia
+
+```
+
+```{r,echo=TRUE}
+
+pesos_locales_relacionestudios$consistencia
+
+```
+
+```{r,echo=TRUE}
+
+pesos_locales_desarrollo$consistencia
+
+```
+
+```{r,echo=TRUE}
+
+pesos_locales_satisfaccion$consistencia
+
+```
+
+```{r,echo=TRUE}
+
+pesos_locales_relaciontrabajo$consistencia
+
+```
+
+El análisis de consistencia, llevado a cabo mediante el cálculo de la Razón de Consistencia (RC) para cada matriz, ha demostrado que todos los juicios de valor son coherentes y válidos. En la matriz de criterios, la matriz de comparación por pares de los 8 criterios nos da una razón de Consistencia (RC) inferior al 10%, lo que indica que la jerarquización de la importancia de los factores es altamente fiable. Respecto a las matrices de alternativas, las ocho matrices de comparación por pares para las alternativas  en función de cada criterio también resultaron tener una RC inferior al 10%.
+
+Dado que todas las matrices del modelo AHP presentan una consistencia aceptable, se valida la calidad de los juicios de valor emitidos. Esto asegura que no hay contradicciones significativas en las preferencias establecidas, lo cual confiere una sólida fiabilidad a los pesos locales y, consecuentemente, a los pesos globales que determinan que la alternativa de Tutor es la mejor opción.
+
+Si hubiese habido inconsistencia, el resultado de que "Tutor" es la mejor opción habría tenido que ser revisado. Al ser consistente, puedes afirmar que el resultado (Tutor con el peso global más alto) refleja fielmente las preferencias del decisor.
+
+# CONCLUSIONES GENERALES
+
+Hemos utilizado los métodos de Electre, Promethee y AHP para decidir sobre qué trabajo es mejor para un estudiante, teniendo en cuenta diferentes criterios que afectan a su vida. Todos los criterios coinciden en que la mejor opción de las 5 que estamos evaluando es ser profesor particular o tutor de niños, dar clases particulares, ya que su horario es más flexible y destaca favorablemente en prácticamente todos los criterios que hemos tenido en cuenta. 
+
+El peso que hemos usado en los métodos Electre y Promethee son diferentes a los pesos globales que nos ha dado el método AHP. Los pesos que he usado inicialmente fueron: (0.25, 0.10 , 0.15, 0.15, 0.05, 0.05, 0.15 , 0.10), y los pesos globales que nos ha dado AHP son: (25.3 , 9.4 , 16.3 , 18.5 , 10.3 , 3.8 , 8.8 , 7.7). Podemos observar que los pesos son ligeramente similares a los que supuse al principio, pero el método AHP le ha dado menos valor a la satisfacción y la relación con los compañerosy jefes del trabajo. También le ha dado más importancia sobre todo al desarrollo personal con el trabajo que escojamos.  
