@@ -17,8 +17,6 @@ header-includes: |
 
 \pagebreak
 
-Presentación (Presenta Gráficos; Motiva Problema);
-
 ENLACES:
 https://modelocurriculum.net/blog/trabajos-perfectos-para-compaginar-con-los-estudios
 
