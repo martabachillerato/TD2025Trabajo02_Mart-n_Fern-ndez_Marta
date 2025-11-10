@@ -3,12 +3,12 @@ title: "ELECCIÓN DEL MEJOR TIPO DE EMPLEO PARA COMPAGINAR CON LOS ESTUDIOS UNIV
 author: "Marta Martín Fernández"
 date: "2025-10-28"
 output:
-  html_document: default
   pdf_document:
     toc: true           
     toc_depth: 4
     number_sections: true
     fig_caption: true
+  html_document: default
 header-includes: |
   \usepackage{fvextra}
   \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
@@ -966,7 +966,7 @@ En el diagrama podemos observar que la mejor alternativa es la de profesor parti
 ```{r,echo=TRUE, fig.align='center'}
 
 library(ahp)
-ahp::RunGUI()
+#ahp::RunGUI()
 
 datos = Load("ahptrabajo.ahp")
 Calculate(datos)
@@ -977,9 +977,10 @@ Visualize(datos)
 
 TABLA SOLUCIÓN:
 
-```{r,echo=TRUE}
+```{r out.width="100%", fig.align="center"}
 
 # export_formattable(AnalyzeTable(datos), file = "tablatrabajo.png")
+knitr::include_graphics("tablatrabajo.png")
 
 ```
 
@@ -987,11 +988,12 @@ En la foto que hemos exportado vemos que la mejor alternativa es la de profesor 
 
 TABLA SOLUCIÓN DE PESOS LOCALES:
 
-```{r,echo=TRUE}
+```{r out.width="100%", fig.align="center"}
 
 t2 = AnalyzeTable(datos, variable = "priority")
 
 # export_formattable(t2, file = "tablabtrabajo.png")
+knitr::include_graphics("tablabtrabajo.png")
 
 ```
 
